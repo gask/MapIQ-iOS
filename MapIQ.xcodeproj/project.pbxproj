@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		85D2B50E1AE9861200F88DC6 /* GameEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D2B50D1AE9861200F88DC6 /* GameEntry.swift */; };
 		B0824D7B1AE6DD610035A8EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0824D7A1AE6DD610035A8EB /* AppDelegate.swift */; };
 		B0824D7D1AE6DD610035A8EB /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0824D7C1AE6DD610035A8EB /* Game.swift */; };
 		B0824D801AE6DD610035A8EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0824D7E1AE6DD610035A8EB /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		85D2B50D1AE9861200F88DC6 /* GameEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEntry.swift; sourceTree = "<group>"; };
 		B0824D751AE6DD610035A8EB /* MapIQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapIQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0824D791AE6DD610035A8EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0824D7A1AE6DD610035A8EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			children = (
 				B0824D7A1AE6DD610035A8EB /* AppDelegate.swift */,
 				B0824D7C1AE6DD610035A8EB /* Game.swift */,
+				85D2B50D1AE9861200F88DC6 /* GameEntry.swift */,
 				B0824D7E1AE6DD610035A8EB /* Main.storyboard */,
 				B0824D811AE6DD610035A8EB /* Images.xcassets */,
 				B0824D831AE6DD610035A8EB /* LaunchScreen.xib */,
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85D2B50E1AE9861200F88DC6 /* GameEntry.swift in Sources */,
 				B0824D7D1AE6DD610035A8EB /* Game.swift in Sources */,
 				B0824D7B1AE6DD610035A8EB /* AppDelegate.swift in Sources */,
 			);
@@ -498,6 +502,7 @@
 				B0824D961AE6DD620035A8EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B0824D971AE6DD620035A8EB /* Build configuration list for PBXNativeTarget "MapIQTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +511,7 @@
 				B0824D991AE6DD620035A8EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

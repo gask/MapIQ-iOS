@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
@@ -20,37 +20,49 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqZ-fA-1A3">
-                                <rect key="frame" x="16" y="554" width="60" height="30"/>
-                                <state key="normal" title="Click me">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqZ-fA-1A3">
+                                <rect key="frame" x="552" y="550" width="32" height="30"/>
+                                <state key="normal" title="Next">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="nextRound:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Oq2-mN-k0W"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jda-Ik-jm6" userLabel="Timer">
-                                <rect key="frame" x="16" y="20" width="38" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jda-Ik-jm6" userLabel="Timer">
+                                <rect key="frame" x="16" y="20" width="60" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="6DT-yo-cDd"/>
+                                    <constraint firstAttribute="width" constant="60" id="thT-9J-SVt"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Place name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5X-p2-Qpm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5X-p2-Qpm">
                                 <rect key="frame" x="255" y="20" width="90" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="gJ0-qA-93e" firstAttribute="bottom" secondItem="IqZ-fA-1A3" secondAttribute="bottom" constant="20" id="41P-EY-B2d"/>
+                            <constraint firstItem="gJ0-qA-93e" firstAttribute="leading" secondItem="Jda-Ik-jm6" secondAttribute="trailing" constant="-76" id="4F7-WY-Abe"/>
                             <constraint firstItem="gJ0-qA-93e" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Dui-k9-b8m"/>
-                            <constraint firstItem="gJ0-qA-93e" firstAttribute="leading" secondItem="IqZ-fA-1A3" secondAttribute="leading" constant="-16" id="a2W-dr-5j3"/>
+                            <constraint firstItem="H5X-p2-Qpm" firstAttribute="centerX" secondItem="gJ0-qA-93e" secondAttribute="centerX" id="SUL-l4-bak"/>
+                            <constraint firstItem="H5X-p2-Qpm" firstAttribute="baseline" secondItem="Jda-Ik-jm6" secondAttribute="baseline" id="WPo-VX-jY7"/>
                             <constraint firstAttribute="trailing" secondItem="gJ0-qA-93e" secondAttribute="trailing" id="ahC-eq-Qsu"/>
+                            <constraint firstItem="gJ0-qA-93e" firstAttribute="top" secondItem="Jda-Ik-jm6" secondAttribute="bottom" constant="-41" id="emo-yh-THb"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="gJ0-qA-93e" secondAttribute="bottom" id="iWh-Oj-5Fk"/>
-                            <constraint firstItem="IqZ-fA-1A3" firstAttribute="bottom" secondItem="gJ0-qA-93e" secondAttribute="bottom" constant="-16" id="l3h-lO-kG9"/>
+                            <constraint firstItem="gJ0-qA-93e" firstAttribute="trailing" secondItem="IqZ-fA-1A3" secondAttribute="trailing" constant="16" id="nIU-mf-iGA"/>
                             <constraint firstItem="gJ0-qA-93e" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="zp0-Oa-ho9"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="gameMap" destination="gJ0-qA-93e" id="uxl-sO-Rs4"/>
+                        <outlet property="nextBtn" destination="IqZ-fA-1A3" id="SB2-az-fSW"/>
                         <outlet property="placeName" destination="H5X-p2-Qpm" id="zFb-Wq-YRi"/>
                         <outlet property="timeLabel" destination="Jda-Ik-jm6" id="FHh-5V-8C7"/>
                     </connections>
