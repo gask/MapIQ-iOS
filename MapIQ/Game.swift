@@ -29,10 +29,15 @@ class Game: UIViewController, GMSMapViewDelegate {
         gameMap.delegate = self
         
         rightCoordinate = CLLocationCoordinate2DMake(-23.5479106,-46.6360186)
+        placeName.text = "São Paulo"
         
         let camera = GMSCameraPosition.cameraWithLatitude(rightCoordinate.latitude, longitude: rightCoordinate.longitude, zoom: kGMSMinZoomLevel)
         
         gameMap.animateToCameraPosition(camera)
+        gameMap.settings.zoomGestures = false
+        gameMap.settings.tiltGestures = false
+        gameMap.settings.rotateGestures = false
+        gameMap.settings.scrollGestures = false
         
         gameOn = true
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("changeCounter"), userInfo: nil, repeats: true)
@@ -73,16 +78,25 @@ class Game: UIViewController, GMSMapViewDelegate {
                 roundCount++
             }
             else {
+                
                 println("coord array: \(coordinateArray)")
             }
         }
     }
     
     @IBAction func nextRound(sender: UIButton) {
-        nextBtn.hidden = true
-        gameOn = true
-        time = 10
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("changeCounter"), userInfo: nil, repeats: true)
+        //println("pele dourada")
+        if roundCount < 5 {
+            // rodada não terminou
+            nextBtn.hidden = true
+            gameOn = true
+            time = 10
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("changeCounter"), userInfo: nil, repeats: true)
+        }
+        else {
+            // jogo terminou
+        }
+        
     }
 
 }
