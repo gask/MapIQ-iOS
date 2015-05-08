@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OU7-gA-5nh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OU7-gA-5nh">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
@@ -81,37 +81,13 @@
                     <view key="view" contentMode="scaleToFill" id="Ov8-vS-cmI">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="world" translatesAutoresizingMaskIntoConstraints="NO" id="xf5-PH-71b">
-                                <rect key="frame" x="285" y="285" width="30" height="30"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="7FD-Xd-BUY" appends="YES" id="vvv-zk-iz6"/>
-                                </connections>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="xf5-PH-71b" secondAttribute="centerY" id="0ff-JV-SvL"/>
-                            <constraint firstAttribute="centerX" secondItem="xf5-PH-71b" secondAttribute="centerX" id="5cg-yG-hmE"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="map" destination="xf5-PH-71b" id="ck3-2v-9Vs"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FaP-jl-2Lf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="7FD-Xd-BUY">
-                    <connections>
-                        <action selector="tappedMap:" destination="OU7-gA-5nh" id="Rjg-EM-yhQ"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1055" y="364"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="world" width="2128" height="2128"/>
-    </resources>
 </document>
