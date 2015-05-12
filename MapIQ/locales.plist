@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>update</key>
+	<date>2015-05-11T17:18:55Z</date>
+	<key>themes</key>
+	<array>
+		<dict>
+			<key>pointsToUnlock</key>
+			<string>0</string>
+			<key>bundle</key>
+			<string></string>
+			<key>tier</key>
+			<string>0</string>
+			<key>name</key>
+			<string>Cities of the World I</string>
+			<key>parent</key>
+			<integer>-1</integer>
+			<key>ID</key>
+			<integer>1</integer>
+			<key>mapCode</key>
+			<string>world</string>
+			<key>locales</key>
+			<array>
+				<dict>
+					<key>localeID</key>
+					<integer>1</integer>
+					<key>localeName</key>
+					<string>São Paulo, Brazil</string>
+					<key>latitude</key>
+					<string>-23.5479106</string>
+					<key>longitude</key>
+					<string>-46.6360186</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>2</integer>
+					<key>localeName</key>
+					<string>Abu Dhabi, United Arab Emirates</string>
+					<key>latitude</key>
+					<string>24.4667</string>
+					<key>longitude</key>
+					<string>54.3667</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>3</integer>
+					<key>localeName</key>
+					<string>Adelaide, Australia</string>
+					<key>latitude</key>
+					<string>-34.9286</string>
+					<key>longitude</key>
+					<string>138.6</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>4</integer>
+					<key>localeName</key>
+					<string>Amsterdam, Netherlands</string>
+					<key>latitude</key>
+					<string>52.3702</string>
+					<key>longitude</key>
+					<string>4.89517</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>5</integer>
+					<key>localeName</key>
+					<string>Ankara, Turkey</string>
+					<key>latitude</key>
+					<string>39.9208</string>
+					<key>longitude</key>
+					<string>32.8541</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>6</integer>
+					<key>localeName</key>
+					<string>Athens, Greece</string>
+					<key>latitude</key>
+					<string>37.9837</string>
+					<key>longitude</key>
+					<string>23.7293</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>1</integer>
+					<key>localeName</key>
+					<string>Auckland, New Zealand</string>
+					<key>latitude</key>
+					<string>-36.8485</string>
+					<key>longitude</key>
+					<string>174.763</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>8</integer>
+					<key>localeName</key>
+					<string>Barcelona, Spain</string>
+					<key>latitude</key>
+					<string>41.3851</string>
+					<key>longitude</key>
+					<string>2.1734</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>9</integer>
+					<key>localeName</key>
+					<string>Beijing, China</string>
+					<key>latitude</key>
+					<string>39.904</string>
+					<key>longitude</key>
+					<string>116.408</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>10</integer>
+					<key>localeName</key>
+					<string>Berlin, Germany</string>
+					<key>latitude</key>
+					<string>52.5192</string>
+					<key>longitude</key>
+					<string>13.4061</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
