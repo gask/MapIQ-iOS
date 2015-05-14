@@ -126,36 +126,96 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="KSf-km-rLb">
+                                <rect key="frame" x="540" y="540" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="W4M-vF-8h1"/>
+                                    <constraint firstAttribute="width" constant="60" id="uVm-30-Q4e"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QbS-WS-jka" userLabel="Timer">
-                                <rect key="frame" x="16" y="20" width="42" height="21"/>
+                                <rect key="frame" x="549" y="571" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2M3-Ls-WaU" userLabel="Next">
-                                <rect key="frame" x="552" y="550" width="32" height="30"/>
-                                <state key="normal" title="Next">
+                                <rect key="frame" x="540" y="540" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="DCc-WK-pKt"/>
+                                    <constraint firstAttribute="height" constant="60" id="Tla-bR-FKx"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="next">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" backgroundImage="nextPressed"/>
                                 <connections>
                                     <action selector="nextRound:" destination="OU7-gA-5nh" eventType="touchUpInside" id="Pzs-wA-YEb"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="countdown1" translatesAutoresizingMaskIntoConstraints="NO" id="6Aq-va-VcJ" userLabel="CountdownImg">
+                                <rect key="frame" x="-111" y="230" width="111" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="111" id="Gn2-ep-b3c"/>
+                                    <constraint firstAttribute="height" constant="140" id="veY-oc-7Lu"/>
+                                </constraints>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="countdown1-1" translatesAutoresizingMaskIntoConstraints="NO" id="9Gj-1l-Ak3">
+                                <rect key="frame" x="245" y="230" width="111" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="111" id="D9n-qF-zym"/>
+                                    <constraint firstAttribute="height" constant="140" id="Gr4-MU-jgq"/>
+                                </constraints>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="countdown1-2" translatesAutoresizingMaskIntoConstraints="NO" id="yKa-8A-FVV" userLabel="countdown1-2">
+                                <rect key="frame" x="245" y="230" width="111" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="111" id="Gi0-bj-u9P"/>
+                                    <constraint firstAttribute="height" constant="140" id="URh-IH-c8u"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uul-jn-70z" userLabel="Hint">
+                                <rect key="frame" x="0.0" y="540" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="0FH-YE-Lbx"/>
+                                    <constraint firstAttribute="height" constant="60" id="Z6f-nR-CGw"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="hint">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" backgroundImage="hintPressed"/>
+                                <connections>
+                                    <action selector="getHint:" destination="OU7-gA-5nh" eventType="touchUpInside" id="fz6-91-LhN"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="8JI-a4-BO6" firstAttribute="top" secondItem="2M3-Ls-WaU" secondAttribute="bottom" constant="20" id="01s-mE-b3t"/>
-                            <constraint firstItem="QbS-WS-jka" firstAttribute="top" secondItem="xFu-Vr-a7g" secondAttribute="bottom" id="3bt-4H-HNY"/>
+                            <constraint firstItem="8JI-a4-BO6" firstAttribute="top" secondItem="2M3-Ls-WaU" secondAttribute="bottom" id="01s-mE-b3t"/>
+                            <constraint firstAttribute="centerY" secondItem="9Gj-1l-Ak3" secondAttribute="centerY" id="4AE-dM-0gs"/>
+                            <constraint firstAttribute="centerY" secondItem="yKa-8A-FVV" secondAttribute="centerY" id="7hx-4u-y5a"/>
+                            <constraint firstItem="8JI-a4-BO6" firstAttribute="top" secondItem="Uul-jn-70z" secondAttribute="bottom" id="AwX-WN-fGY"/>
+                            <constraint firstAttribute="centerX" secondItem="yKa-8A-FVV" secondAttribute="centerX" constant="-0.5" id="CIl-a0-Tav"/>
+                            <constraint firstItem="8JI-a4-BO6" firstAttribute="top" secondItem="KSf-km-rLb" secondAttribute="bottom" id="CYS-ui-rd6"/>
                             <constraint firstItem="1gD-RG-EMy" firstAttribute="top" secondItem="xFu-Vr-a7g" secondAttribute="bottom" id="GrM-IE-wy8"/>
-                            <constraint firstItem="2M3-Ls-WaU" firstAttribute="trailing" secondItem="Ov8-vS-cmI" secondAttribute="trailingMargin" id="hNH-sr-EtG"/>
+                            <constraint firstItem="KSf-km-rLb" firstAttribute="centerY" secondItem="QbS-WS-jka" secondAttribute="centerY" constant="-11.5" id="HnI-kT-dHb"/>
+                            <constraint firstAttribute="centerY" secondItem="6Aq-va-VcJ" secondAttribute="centerY" id="Jff-IK-AWJ"/>
+                            <constraint firstItem="KSf-km-rLb" firstAttribute="centerX" secondItem="QbS-WS-jka" secondAttribute="centerX" id="NVZ-Lw-GST"/>
+                            <constraint firstItem="Uul-jn-70z" firstAttribute="leading" secondItem="Ov8-vS-cmI" secondAttribute="leading" id="f3u-iD-z3T"/>
+                            <constraint firstItem="2M3-Ls-WaU" firstAttribute="trailing" secondItem="Ov8-vS-cmI" secondAttribute="trailing" id="hNH-sr-EtG"/>
                             <constraint firstAttribute="centerX" secondItem="1gD-RG-EMy" secondAttribute="centerX" id="p9l-fh-9iL"/>
-                            <constraint firstItem="QbS-WS-jka" firstAttribute="leading" secondItem="Ov8-vS-cmI" secondAttribute="leadingMargin" id="uQ2-1Y-iMd"/>
+                            <constraint firstAttribute="trailing" secondItem="KSf-km-rLb" secondAttribute="trailing" id="rQp-ke-ULT"/>
+                            <constraint firstAttribute="centerX" secondItem="9Gj-1l-Ak3" secondAttribute="centerX" constant="-0.5" id="whH-pu-4mK"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="countdownFlashOne" destination="9Gj-1l-Ak3" id="6aC-ZG-yY2"/>
+                        <outlet property="countdownFlashTwo" destination="yKa-8A-FVV" id="JzZ-Jx-d78"/>
+                        <outlet property="countdownImg" destination="6Aq-va-VcJ" id="RtD-Wr-ulb"/>
                         <outlet property="nextBtn" destination="2M3-Ls-WaU" id="c9H-3x-7PV"/>
                         <outlet property="placeName" destination="1gD-RG-EMy" id="WlJ-Qh-sxm"/>
+                        <outlet property="timeImage" destination="KSf-km-rLb" id="W8u-ql-rWl"/>
                         <outlet property="timeLabel" destination="QbS-WS-jka" id="T7A-zD-avo"/>
                         <segue destination="A1j-Er-WDx" kind="presentation" identifier="EndGame" id="rHG-ZF-0xO"/>
                     </connections>
@@ -435,5 +495,13 @@
     </scenes>
     <resources>
         <image name="bar" width="314" height="48"/>
+        <image name="countdown1" width="300" height="380"/>
+        <image name="countdown1-1" width="300" height="380"/>
+        <image name="countdown1-2" width="300" height="380"/>
+        <image name="hint" width="256" height="256"/>
+        <image name="hintPressed" width="256" height="256"/>
+        <image name="next" width="256" height="256"/>
+        <image name="nextPressed" width="256" height="256"/>
+        <image name="time" width="256" height="256"/>
     </resources>
 </document>

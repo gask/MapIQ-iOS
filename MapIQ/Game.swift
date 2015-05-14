@@ -14,9 +14,15 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     var mapHeight = Double(320)
     var mapName = ""
     
+    var animationGoing = false
+    
     @IBOutlet var placeName: UILabel!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var nextBtn: UIButton!
+    
+    @IBOutlet var countdownImg: UIImageView!
+    @IBOutlet var countdownFlashOne: UIImageView!
+    @IBOutlet var countdownFlashTwo: UIImageView!
     
     var timer: NSTimer!
     var time = 0.0
@@ -26,6 +32,9 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     var rightArray : [Locale] = []
     
     var map: UIImageView!
+    @IBOutlet var timeImage: UIImageView!
+    let timeOver1 = UIImageView(image: UIImage(named: "timeOver1"))
+    let timeOver2 = UIImageView(image: UIImage(named: "timeOver2"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,17 +49,56 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
         map.addGestureRecognizer(tapRec)
         self.view.insertSubview(map, belowSubview: placeName)
         
-        //placeName.text = "São Paulo"
-        //rightCoordinate = CGPoint(x: -46.6360186,y: -23.5479106)
         
-        gameOn = true
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("changeCounter"), userInfo: nil, repeats: true)
     }
     
     func changeCounter() {
         time += Double(0.1)
         let timeText = NSString(format: "%.1f",time)
         timeLabel.text = "\(timeText)s"
+        
+        if time > 10 && !clockTicking {
+            
+            self.timeImage.addSubview(self.timeOver1)
+            clockTicking = true
+            
+            startTimeAnimation()
+        }
+    }
+    
+    var clockTicking = false
+    
+    func startTimeAnimation() {
+        if clockTicking {
+            if self.timeOver1.isDescendantOfView(self.timeImage) {
+                println("timeOver1 removed")
+                self.timeOver1.removeFromSuperview()
+            } else {
+                self.timeImage.addSubview(self.timeOver1)
+                println("timeOver1 added")
+            }
+            
+            if self.timeOver2.isDescendantOfView(self.timeImage) {
+                self.timeOver2.removeFromSuperview()
+                println("timeOver2 removed")
+            } else {
+                self.timeImage.addSubview(self.timeOver2)
+                println("timeOver2 added")
+            }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+                self.startTimeAnimation()
+            })
+        }
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        if self.animationGoing {
+            return false
+        } else {
+            return true
+        }
+        
     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -76,26 +124,80 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
             myPoint = getPixelPoint(myCoordinate)
             myFlag.frame = CGRect(x: myPoint.x-20, y: myPoint.y-40, width: 40, height: 40)
             
-            if distanceCircle != nil {
-                distanceCircle!.removeFromSuperview()
-            }
-            if distanceCircleRight != nil {
-                distanceCircleRight!.removeFromSuperview()
-            }
-            if distanceCircleLeft != nil {
-                distanceCircleLeft!.removeFromSuperview()
-            }
+            distanceCircle.removeFromSuperview()
+            distanceCircleRight.removeFromSuperview()
+            distanceCircleLeft.removeFromSuperview()
             
-            createOrChangeDistanceCircles()
+            createOrChangeDistanceCircles(false)
         }
         
     }
     
     override func viewDidAppear(animated: Bool) {
         let screenSize = UIScreen.mainScreen().bounds
-        map.frame = CGRect(x: Double(screenSize.width)/2-mapWidth/2, y: Double(screenSize.height)/2-mapHeight/2, width: Double(screenSize.width), height: Double(screenSize.width))
         
+        mapWidth = Double(screenSize.width)
+        mapHeight = Double(screenSize.width)
+        if screenSize.width < screenSize.height {
+            map.frame = CGRect(x: Double(screenSize.width)/2-mapWidth/2, y: Double(screenSize.height)/2-mapHeight/2, width: Double(screenSize.width), height: Double(screenSize.width))
+        }
+        else {
+            map.frame = CGRect(x: 0, y: Double(screenSize.height)/2-Double(screenSize.width)/2, width: Double(screenSize.width), height: Double(screenSize.width))
+        }
         
+        self.animateCountdown(screenSize, times: 0)
+        self.timeOver1.frame.size = self.timeImage.frame.size
+        self.timeOver2.frame.size = self.timeImage.frame.size
+    }
+    
+    func animateCountdown(screenSize:CGRect, times:Int) {
+        
+        self.countdownImg.image = UIImage(named: "countdown\(times+1)")
+        self.countdownFlashOne.image = UIImage(named: "countdown\(times+1)-1")
+        self.countdownFlashTwo.image = UIImage(named: "countdown\(times+1)-2")
+        
+        UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseIn, animations: {
+            self.animationGoing = true
+            var centerFrame = self.countdownImg.frame
+            centerFrame.origin.x += screenSize.size.width/2+self.countdownImg.frame.size.width/2
+            
+            self.countdownImg.frame = centerFrame
+            }, completion: { finished in
+                
+                self.countdownFlashOne.hidden = false
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+                    self.countdownFlashOne.hidden = true
+                    self.countdownFlashTwo.hidden = false
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+                        self.countdownFlashTwo.hidden = true
+                    });
+                });
+                
+                UIView.animateWithDuration(0.5, delay: 0.5, options: .CurveEaseOut, animations: {
+                    var endFrame = self.countdownImg.frame
+                    endFrame.origin.x += screenSize.size.width/2+self.countdownImg.frame.size.width/2
+                    
+                    self.countdownImg.frame = endFrame
+                    }, completion: { finishedTwo in
+                        
+                        if finishedTwo {
+                            if times < 2 {
+                                var originalFrame = self.countdownImg.frame
+                                originalFrame.origin.x = -self.countdownImg.frame.size.width
+                                self.countdownImg.frame = originalFrame
+                                self.animateCountdown(screenSize, times: times+1)
+                            } else {
+                                self.animationGoing = false
+                                self.gameOn = true
+                                self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("changeCounter"), userInfo: nil, repeats: true)
+                            }
+                        }
+     
+                })
+
+        })
     }
     
     var rightFlag = UIImageView(image: UIImage(named:"blueFlag"))
@@ -128,6 +230,7 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
                 coordinateArray.append(gi)
                 
                 nextBtn.hidden = false
+                clockTicking = false
                 roundCount++
                 
                 rightFlag.frame = CGRect(x: rightPoint.x-20, y: rightPoint.y-40, width: 40, height: 40)
@@ -136,9 +239,18 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
                 myFlag.frame = CGRect(x: myPoint.x-20, y: myPoint.y-40, width: 40, height: 40)
                 map.addSubview(myFlag)
                 
-                createOrChangeDistanceCircles()
+                createOrChangeDistanceCircles(true)
             }
         }
+    }
+    
+    var hintTimes = 1
+    
+    @IBAction func getHint(sender: AnyObject) {
+        let hintradius = Double(400/hintTimes)
+        var rndX = arc4random_uniform(UInt32(hintradius))*UInt32(2)-UInt32(hintradius)
+        var limY = sqrt(pow(hintradius,2)-pow(Double(rndX),2))
+        var rndY = arc4random_uniform(UInt32(limY))*UInt32(2)-UInt32(limY)
     }
     
     @IBAction func nextRound(sender: UIButton) {
@@ -147,15 +259,9 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
             // rodada não terminou
             rightFlag.removeFromSuperview()
             myFlag.removeFromSuperview()
-            if distanceCircle != nil {
-                distanceCircle!.removeFromSuperview()
-            }
-            if distanceCircleRight != nil {
-                distanceCircleRight!.removeFromSuperview()
-            }
-            if distanceCircleLeft != nil {
-                distanceCircleLeft!.removeFromSuperview()
-            }
+            distanceCircle.removeFromSuperview()
+            distanceCircleRight.removeFromSuperview()
+            distanceCircleLeft.removeFromSuperview()
             
             rightCoordinate = rightArray[roundCount].coordinate
             placeName.text = rightArray[roundCount].name
@@ -203,11 +309,11 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
         return d
     }
     
-    var distanceCircleRight : UIView?
-    var distanceCircleLeft : UIView?
-    var distanceCircle : UIView?
+    var distanceCircleRight = UIImageView(image: UIImage(named: "redCircle"))
+    var distanceCircleLeft = UIImageView(image: UIImage(named: "redCircle"))
+    var distanceCircle = UIImageView(image: UIImage(named: "redCircle"))
     
-    func createOrChangeDistanceCircles() {
+    func createOrChangeDistanceCircles(animated:Bool) {
         var horizontalCathetus : CGFloat
         let leftEdgePoint = getPixelPoint(CGPoint(x:-180,y:0))
         let rightEdgePoint = getPixelPoint(CGPoint(x:179.99,y:0))
@@ -228,12 +334,32 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
             // apenas um circulo
             let xCenter = (myPoint.x + rightPoint.x)/2
             let yCenter = (myPoint.y + rightPoint.y)/2
-            let xOrigin = xCenter-diameter/2
-            let yOrigin = yCenter-diameter/2
+            var xOrigin = xCenter-diameter/2
+            var yOrigin = yCenter-diameter/2
+            distanceCircle.frame = CGRect(x:xOrigin, y:yOrigin, width: diameter, height: diameter)
+            if animated {
+                xOrigin = xCenter-1/2
+                yOrigin = yCenter-1/2
+                distanceCircle.frame = CGRect(x:xOrigin, y:yOrigin, width: 1, height: 1)
+            }
             
-            distanceCircle = createCircle(CGRect(x:xOrigin, y:yOrigin, width: diameter, height: diameter))
+            map.addSubview(distanceCircle)
             
-            map.addSubview(distanceCircle!)
+            if animated {
+                
+                UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseIn , animations: {
+                    var newFrame = self.distanceCircle.frame
+                    newFrame.size.width = diameter
+                    newFrame.size.height = diameter
+                    newFrame.origin.x = xCenter-diameter/2
+                    newFrame.origin.y = yCenter-diameter/2
+                    
+                    self.distanceCircle.frame = newFrame
+                    }, completion: { finished in
+                        
+                })
+            }
+            
             
         } else {
             diameter = d2
@@ -256,12 +382,37 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
                 centerLeft = CGPoint(x:(virtualLeft.x+myPoint.x)/2, y:(virtualLeft.y+myPoint.y)/2)
             }
             
-            distanceCircleRight = createCircle(CGRect(x:centerRight.x-diameter/2, y:centerRight.y-diameter/2, width: diameter, height: diameter))
-            distanceCircleLeft = createCircle(CGRect(x:centerLeft.x-diameter/2, y:centerLeft.y-diameter/2, width: diameter, height: diameter))
+            distanceCircleRight.frame = CGRect(x:centerRight.x-diameter/2, y:centerRight.y-diameter/2, width: diameter, height: diameter)
+            distanceCircleLeft.frame = CGRect(x:centerLeft.x-diameter/2, y:centerLeft.y-diameter/2, width: diameter, height: diameter)
+            if animated {
+                distanceCircleRight.frame = CGRect(x:centerRight.x-1/2, y:centerRight.y-1/2, width: 1, height: 1)
+                distanceCircleLeft.frame = CGRect(x:centerLeft.x-1/2, y:centerLeft.y-1/2, width: 1, height: 1)
+            }
             
-            map.addSubview(distanceCircleRight!)
-            map.addSubview(distanceCircleLeft!)
-            //let xCenterOne =  ? (myPoi)
+            map.addSubview(distanceCircleRight)
+            map.addSubview(distanceCircleLeft)
+            if animated {
+                UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseIn , animations: {
+                    var newFrameLeft = self.distanceCircleLeft.frame
+                    var newFrameRight = self.distanceCircleRight.frame
+                    
+                    newFrameLeft.size.width = diameter
+                    newFrameLeft.size.height = diameter
+                    newFrameLeft.origin.x = centerLeft.x-diameter/2
+                    newFrameLeft.origin.y = centerLeft.y-diameter/2
+                    newFrameRight.size.width = diameter
+                    newFrameRight.size.height = diameter
+                    newFrameRight.origin.x = centerRight.x-diameter/2
+                    newFrameRight.origin.y = centerRight.y-diameter/2
+                    
+                    self.distanceCircleLeft.frame = newFrameLeft
+                    self.distanceCircleRight.frame = newFrameRight
+                    
+                    }, completion: { finished in
+                        
+                })
+            }
+            
         }
     }
     
