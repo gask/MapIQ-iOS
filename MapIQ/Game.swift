@@ -36,10 +36,13 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     let timeOver1 = UIImageView(image: UIImage(named: "timeOver1"))
     let timeOver2 = UIImageView(image: UIImage(named: "timeOver2"))
     
+    var otherOrientationWidth : Double!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         rightCoordinate = rightArray[roundCount].coordinate
+        rightPoint = getPixelPoint(rightCoordinate)
         placeName.text = rightArray[roundCount].name
         
         map = UIImageView(image: UIImage(named: mapName))
@@ -71,19 +74,15 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     func startTimeAnimation() {
         if clockTicking {
             if self.timeOver1.isDescendantOfView(self.timeImage) {
-                println("timeOver1 removed")
                 self.timeOver1.removeFromSuperview()
             } else {
                 self.timeImage.addSubview(self.timeOver1)
-                println("timeOver1 added")
             }
             
             if self.timeOver2.isDescendantOfView(self.timeImage) {
                 self.timeOver2.removeFromSuperview()
-                println("timeOver2 removed")
             } else {
                 self.timeImage.addSubview(self.timeOver2)
-                println("timeOver2 added")
             }
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
@@ -104,9 +103,12 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         let screenSize = UIScreen.mainScreen().bounds
         
+        mapWidth = Double(screenSize.width)
+        mapHeight = Double(screenSize.width)
+        otherOrientationWidth = Double(screenSize.height)
+        
         if mapName == "world" {
-            mapWidth = Double(screenSize.width)
-            mapHeight = Double(screenSize.width)
+            
             //println("screensize: \(screenSize)")
             if screenSize.width < screenSize.height {
                 map.frame = CGRect(x: Double(screenSize.width)/2-mapWidth/2, y: Double(screenSize.height)/2-mapHeight/2, width: Double(screenSize.width), height: Double(screenSize.width))
@@ -120,6 +122,9 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
         
         rightPoint = getPixelPoint(rightCoordinate)
         rightFlag.frame = CGRect(x: rightPoint.x-20, y: rightPoint.y-40, width: 40, height: 40)
+        let hintPoint = getPixelPoint(hintCoordinate)
+        hintCircle.frame = CGRect(x: hintPoint.x-CGFloat(hintdiameter*mapWidth/otherOrientationWidth/2), y: hintPoint.y-CGFloat(hintdiameter*mapWidth/otherOrientationWidth/2), width: CGFloat(hintdiameter*mapWidth/otherOrientationWidth), height: CGFloat(hintdiameter*mapWidth/otherOrientationWidth))
+        println("hintPoint rot: \(hintPoint)")
         if myCoordinate != nil {
             myPoint = getPixelPoint(myCoordinate)
             myFlag.frame = CGRect(x: myPoint.x-20, y: myPoint.y-40, width: 40, height: 40)
@@ -127,6 +132,7 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
             distanceCircle.removeFromSuperview()
             distanceCircleRight.removeFromSuperview()
             distanceCircleLeft.removeFromSuperview()
+            
             
             createOrChangeDistanceCircles(false)
         }
@@ -138,6 +144,9 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
         
         mapWidth = Double(screenSize.width)
         mapHeight = Double(screenSize.width)
+        otherOrientationWidth = Double(screenSize.height)
+        
+        
         if screenSize.width < screenSize.height {
             map.frame = CGRect(x: Double(screenSize.width)/2-mapWidth/2, y: Double(screenSize.height)/2-mapHeight/2, width: Double(screenSize.width), height: Double(screenSize.width))
         }
@@ -245,12 +254,37 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     }
     
     var hintTimes = 1
+    var hintCircle = UIImageView(image: UIImage(named:"orangeCircle"))
+    var hintCoordinate : CGPoint!
+    var hintdiameter = Double(0)
     
     @IBAction func getHint(sender: AnyObject) {
-        let hintradius = Double(400/hintTimes)
-        var rndX = arc4random_uniform(UInt32(hintradius))*UInt32(2)-UInt32(hintradius)
-        var limY = sqrt(pow(hintradius,2)-pow(Double(rndX),2))
-        var rndY = arc4random_uniform(UInt32(limY))*UInt32(2)-UInt32(limY)
+        
+        let multiplier = UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation) ? Double(otherOrientationWidth/mapWidth) : Double(1)
+        
+        hintdiameter = 100.0 * multiplier/Double(hintTimes)
+        
+        let randNumb = arc4random_uniform(UInt32(hintdiameter/2))
+        let rndX = Double(randNumb)*2-hintdiameter/2
+        let a = pow(hintdiameter/2,2)
+        let b = pow(Double(rndX),2)
+        let limY = sqrt(a - b)
+        let randNumb2 = arc4random_uniform(UInt32(limY))
+        let rndY = Double(randNumb2)*2-limY
+        
+        let hintX = rightPoint.x + CGFloat(rndX)
+        let hintY = rightPoint.y + CGFloat(rndY)
+        let hintFrame = CGRect(x: hintX-CGFloat(hintdiameter/2), y: hintY-CGFloat(hintdiameter/2), width: CGFloat(hintdiameter), height: CGFloat(hintdiameter))
+        hintCoordinate = getCoordinate(CGPoint(x: hintX, y: hintY))
+        println("hintCoord btn: \(hintCoordinate)")
+        println("hintPoint btn: \(CGPoint(x: hintX, y: hintY))")
+        
+        hintCircle.frame = hintFrame
+        
+        if !self.hintCircle.isDescendantOfView(map) {
+            map.addSubview(hintCircle)
+        }
+        hintTimes++
     }
     
     @IBAction func nextRound(sender: UIButton) {
@@ -262,6 +296,8 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
             distanceCircle.removeFromSuperview()
             distanceCircleRight.removeFromSuperview()
             distanceCircleLeft.removeFromSuperview()
+            hintCircle.removeFromSuperview()
+            hintTimes = 1
             
             rightCoordinate = rightArray[roundCount].coordinate
             placeName.text = rightArray[roundCount].name
