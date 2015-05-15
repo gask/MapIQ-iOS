@@ -42,7 +42,6 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         
         rightCoordinate = rightArray[roundCount].coordinate
-        rightPoint = getPixelPoint(rightCoordinate)
         placeName.text = rightArray[roundCount].name
         
         map = UIImageView(image: UIImage(named: mapName))
@@ -124,7 +123,8 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
         rightFlag.frame = CGRect(x: rightPoint.x-20, y: rightPoint.y-40, width: 40, height: 40)
         let hintPoint = getPixelPoint(hintCoordinate)
         hintCircle.frame = CGRect(x: hintPoint.x-CGFloat(hintdiameter*mapWidth/otherOrientationWidth/2), y: hintPoint.y-CGFloat(hintdiameter*mapWidth/otherOrientationWidth/2), width: CGFloat(hintdiameter*mapWidth/otherOrientationWidth), height: CGFloat(hintdiameter*mapWidth/otherOrientationWidth))
-        println("hintPoint rot: \(hintPoint)")
+        
+        println("hintCircle rot: \(hintCircle)")
         if myCoordinate != nil {
             myPoint = getPixelPoint(myCoordinate)
             myFlag.frame = CGRect(x: myPoint.x-20, y: myPoint.y-40, width: 40, height: 40)
@@ -145,7 +145,7 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
         mapWidth = Double(screenSize.width)
         mapHeight = Double(screenSize.width)
         otherOrientationWidth = Double(screenSize.height)
-        
+        rightPoint = getPixelPoint(rightCoordinate)
         
         if screenSize.width < screenSize.height {
             map.frame = CGRect(x: Double(screenSize.width)/2-mapWidth/2, y: Double(screenSize.height)/2-mapHeight/2, width: Double(screenSize.width), height: Double(screenSize.width))
@@ -257,12 +257,21 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     var hintCircle = UIImageView(image: UIImage(named:"orangeCircle"))
     var hintCoordinate : CGPoint!
     var hintdiameter = Double(0)
+    var maxHint = UIImageView(image: UIImage(named:"redCircle"))
     
     @IBAction func getHint(sender: AnyObject) {
         
-        let multiplier = UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation) ? Double(otherOrientationWidth/mapWidth) : Double(1)
+        let multiplier = UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation) ? Double(self.mapWidth/self.otherOrientationWidth) : Double(1)
         
-        hintdiameter = 100.0 * multiplier/Double(hintTimes)
+        hintdiameter = 100.0/Double(hintTimes)
+        
+        maxHint.frame = CGRect(x: Double(rightPoint.x)-hintdiameter, y: Double(rightPoint.y)-hintdiameter, width: hintdiameter*2, height: hintdiameter*2)
+        
+        if !maxHint.isDescendantOfView(map) {
+            map.addSubview(maxHint)
+        }
+        
+        println("maxHint: \(maxHint)")
         
         let randNumb = arc4random_uniform(UInt32(hintdiameter/2))
         let rndX = Double(randNumb)*2-hintdiameter/2
@@ -274,17 +283,17 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
         
         let hintX = rightPoint.x + CGFloat(rndX)
         let hintY = rightPoint.y + CGFloat(rndY)
-        let hintFrame = CGRect(x: hintX-CGFloat(hintdiameter/2), y: hintY-CGFloat(hintdiameter/2), width: CGFloat(hintdiameter), height: CGFloat(hintdiameter))
+        let hintFrame = CGRect(x: Double(hintX), y: Double(hintY), width:hintdiameter, height: hintdiameter)
         hintCoordinate = getCoordinate(CGPoint(x: hintX, y: hintY))
         println("hintCoord btn: \(hintCoordinate)")
-        println("hintPoint btn: \(CGPoint(x: hintX, y: hintY))")
+        println("hintCircle btn: \(hintFrame)")
         
         hintCircle.frame = hintFrame
         
         if !self.hintCircle.isDescendantOfView(map) {
             map.addSubview(hintCircle)
         }
-        hintTimes++
+        //hintTimes++
     }
     
     @IBAction func nextRound(sender: UIButton) {
@@ -300,6 +309,7 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
             hintTimes = 1
             
             rightCoordinate = rightArray[roundCount].coordinate
+            rightPoint = getPixelPoint(rightCoordinate)
             placeName.text = rightArray[roundCount].name
             
             nextBtn.hidden = true
