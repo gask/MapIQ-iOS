@@ -28,6 +28,7 @@ class GameEntry : NSObject {
         desc += "distance: \(distance)\r"
         desc += "coordinate: (\(coordinate.y),\(coordinate.x))\r"
         desc += "score: \(score)\r"
+        desc += "time: \(time)\r"
         desc += "}"
         
         return desc

@@ -12,10 +12,14 @@ class ThemeSelection: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let plistFile = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("locales", ofType: "plist")!)
     
-    var themeArray : [Theme]? {
+    var themeArray = [Theme]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
         if let info = plistFile as? [String:NSObject] {
             if let tArray = info["themes"] as? [NSDictionary]{
-                var arr = [Theme]()
                 for tmpTheme in tArray {
                     var theme = Theme(ID: tmpTheme["ID"] as! Int, name: tmpTheme["name"] as! String, mapCode: tmpTheme["mapCode"] as! String, parentTheme: tmpTheme["parent"] as! Int)
                     
@@ -26,41 +30,38 @@ class ThemeSelection: UIViewController, UITableViewDelegate, UITableViewDataSour
                             larr.append(locale)
                         }
                         theme.locales = larr
-                        arr.append(theme)
+                        themeArray.append(theme)
                     }
                     
                 }
-                return arr
             }
         }
-        return nil
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         
-        println("temas: \(themeArray)")
+        //println("temas: \(themeArray)")
+        println("temas[1]: \(themeArray[1])")
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return themeArray.count
     }
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return themeArray != nil ? themeArray!.count : 0
+        return 1
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("ThemeSelected", sender: self)
+        self.performSegueWithIdentifier("ThemeSelected", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("themeCell") as! ThemeCell
         
-        let theme = themeArray![indexPath.row]
+        var theme = themeArray[indexPath.row]
+        println("crazy fuck: \(indexPath)")
+        
+        cell.tag = indexPath.row
         cell.themeName.text = theme.name
         
         return cell
@@ -68,10 +69,15 @@ class ThemeSelection: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ThemeSelected" {
+            var cell = sender as! ThemeCell
+            
+            println("cell ip: \(cell.tag)")
+            
             var vc : Game = segue.destinationViewController as! Game
             
             var tArr = [Locale]()
-            let places = themeArray![0]
+            let places = themeArray[cell.tag]
+            println("places: \(places)")
             for i in 0...4 {
                 let pl = places.locales[i]
                 tArr.append(pl)

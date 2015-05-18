@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		85D2B50E1AE9861200F88DC6 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D2B50D1AE9861200F88DC6 /* Classes.swift */; };
+		B0708F2B1B0A92C100FAC25E /* france-specs.png in Resources */ = {isa = PBXBuildFile; fileRef = B0708F261B0A92C000FAC25E /* france-specs.png */; };
+		B0708F2C1B0A92C100FAC25E /* uk-specs.png in Resources */ = {isa = PBXBuildFile; fileRef = B0708F271B0A92C100FAC25E /* uk-specs.png */; };
+		B0708F2D1B0A92C100FAC25E /* australia-specs.png in Resources */ = {isa = PBXBuildFile; fileRef = B0708F281B0A92C100FAC25E /* australia-specs.png */; };
+		B0708F2E1B0A92C100FAC25E /* china-specs.png in Resources */ = {isa = PBXBuildFile; fileRef = B0708F291B0A92C100FAC25E /* china-specs.png */; };
+		B0708F2F1B0A92C100FAC25E /* brazil-specs.png in Resources */ = {isa = PBXBuildFile; fileRef = B0708F2A1B0A92C100FAC25E /* brazil-specs.png */; };
 		B07316231AEEDED60087A615 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07316221AEEDED60087A615 /* Game.swift */; };
 		B0824D7B1AE6DD610035A8EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0824D7A1AE6DD610035A8EB /* AppDelegate.swift */; };
 		B0824D7D1AE6DD610035A8EB /* ThemeSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0824D7C1AE6DD610035A8EB /* ThemeSelection.swift */; };
@@ -45,6 +50,11 @@
 
 /* Begin PBXFileReference section */
 		85D2B50D1AE9861200F88DC6 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
+		B0708F261B0A92C000FAC25E /* france-specs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "france-specs.png"; sourceTree = "<group>"; };
+		B0708F271B0A92C100FAC25E /* uk-specs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uk-specs.png"; sourceTree = "<group>"; };
+		B0708F281B0A92C100FAC25E /* australia-specs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "australia-specs.png"; sourceTree = "<group>"; };
+		B0708F291B0A92C100FAC25E /* china-specs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "china-specs.png"; sourceTree = "<group>"; };
+		B0708F2A1B0A92C100FAC25E /* brazil-specs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brazil-specs.png"; sourceTree = "<group>"; };
 		B07316221AEEDED60087A615 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		B0824D751AE6DD610035A8EB /* MapIQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapIQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0824D791AE6DD610035A8EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,6 +146,11 @@
 				B0E4F5101B011856007D6424 /* locales.plist */,
 				85D2B50D1AE9861200F88DC6 /* Classes.swift */,
 				B0824D7E1AE6DD610035A8EB /* Main.storyboard */,
+				B0708F261B0A92C000FAC25E /* france-specs.png */,
+				B0708F271B0A92C100FAC25E /* uk-specs.png */,
+				B0708F281B0A92C100FAC25E /* australia-specs.png */,
+				B0708F291B0A92C100FAC25E /* china-specs.png */,
+				B0708F2A1B0A92C100FAC25E /* brazil-specs.png */,
 				B0824D811AE6DD610035A8EB /* Images.xcassets */,
 				B0824D831AE6DD610035A8EB /* LaunchScreen.xib */,
 				B0824D781AE6DD610035A8EB /* Supporting Files */,
@@ -278,10 +293,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0824D801AE6DD610035A8EB /* Main.storyboard in Resources */,
+				B0708F2B1B0A92C100FAC25E /* france-specs.png in Resources */,
+				B0708F2F1B0A92C100FAC25E /* brazil-specs.png in Resources */,
 				B0824D851AE6DD610035A8EB /* LaunchScreen.xib in Resources */,
 				B0824D821AE6DD610035A8EB /* Images.xcassets in Resources */,
+				B0708F2C1B0A92C100FAC25E /* uk-specs.png in Resources */,
 				B0824D9D1AE6E60F0035A8EB /* GoogleMaps.bundle in Resources */,
+				B0708F2E1B0A92C100FAC25E /* china-specs.png in Resources */,
 				B0E4F5111B011856007D6424 /* locales.plist in Resources */,
+				B0708F2D1B0A92C100FAC25E /* australia-specs.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

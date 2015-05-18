@@ -145,6 +145,85 @@
 				</dict>
 			</array>
 		</dict>
+		<dict>
+			<key>pointsToUnlock</key>
+			<string>0</string>
+			<key>bundle</key>
+			<string></string>
+			<key>tier</key>
+			<string>0</string>
+			<key>name</key>
+			<string>Cities of France I</string>
+			<key>parent</key>
+			<integer>-1</integer>
+			<key>ID</key>
+			<integer>2</integer>
+			<key>mapCode</key>
+			<string>france</string>
+			<key>locales</key>
+			<array>
+				<dict>
+					<key>localeID</key>
+					<integer>1245</integer>
+					<key>localeName</key>
+					<string>Paris</string>
+					<key>latitude</key>
+					<string>48.8566</string>
+					<key>longitude</key>
+					<string>2.35222</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>1246</integer>
+					<key>localeName</key>
+					<string>Marseille</string>
+					<key>latitude</key>
+					<string>43.2965</string>
+					<key>longitude</key>
+					<string>5.36978</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>1247</integer>
+					<key>localeName</key>
+					<string>Lyon</string>
+					<key>latitude</key>
+					<string>45.764</string>
+					<key>longitude</key>
+					<string>4.83566</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>1248</integer>
+					<key>localeName</key>
+					<string>Toulouse</string>
+					<key>latitude</key>
+					<string>43.6047</string>
+					<key>longitude</key>
+					<string>1.44421</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>1249</integer>
+					<key>localeName</key>
+					<string>Nice</string>
+					<key>latitude</key>
+					<string>43.696</string>
+					<key>longitude</key>
+					<string>7.26559</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+			</array>
+		</dict>
 	</array>
 </dict>
 </plist>

@@ -133,8 +133,12 @@
                                     <constraint firstAttribute="width" constant="60" id="uVm-30-Q4e"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QbS-WS-jka" userLabel="Timer">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QbS-WS-jka" userLabel="Timer">
                                 <rect key="frame" x="549" y="571" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="7Sa-1x-TaQ"/>
+                                    <constraint firstAttribute="height" constant="21" id="sdj-dF-Anx"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -213,6 +217,7 @@
                         <outlet property="countdownFlashOne" destination="9Gj-1l-Ak3" id="6aC-ZG-yY2"/>
                         <outlet property="countdownFlashTwo" destination="yKa-8A-FVV" id="JzZ-Jx-d78"/>
                         <outlet property="countdownImg" destination="6Aq-va-VcJ" id="RtD-Wr-ulb"/>
+                        <outlet property="hintBtn" destination="Uul-jn-70z" id="mUI-Tw-PEs"/>
                         <outlet property="nextBtn" destination="2M3-Ls-WaU" id="c9H-3x-7PV"/>
                         <outlet property="placeName" destination="1gD-RG-EMy" id="WlJ-Qh-sxm"/>
                         <outlet property="timeImage" destination="KSf-km-rLb" id="W8u-ql-rWl"/>
