@@ -21,7 +21,10 @@ class ThemeSelection: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let info = plistFile as? [String:NSObject] {
             if let tArray = info["themes"] as? [NSDictionary]{
                 for tmpTheme in tArray {
-                    var theme = Theme(ID: tmpTheme["ID"] as! Int, name: tmpTheme["name"] as! String, mapCode: tmpTheme["mapCode"] as! String, parentTheme: tmpTheme["parent"] as! Int)
+                    println("theme: \(tmpTheme)")
+                    let ptUn = tmpTheme["pointsToUnlock"] as! Int
+                    let ord = tmpTheme["order"] as! Int
+                    var theme = Theme(ID: tmpTheme["ID"] as! Int, name: tmpTheme["name"] as! String, mapCode: tmpTheme["mapCode"] as! String, parentTheme: tmpTheme["parent"] as! Int, unlockPts: ptUn, tOrder: ord)
                     
                     if let lArray = tmpTheme["locales"] as? [NSDictionary] {
                         var larr = [Locale]()
@@ -59,8 +62,8 @@ class ThemeSelection: UIViewController, UITableViewDelegate, UITableViewDataSour
         var cell = tableView.dequeueReusableCellWithIdentifier("themeCell") as! ThemeCell
         
         var theme = themeArray[indexPath.row]
-        println("crazy fuck: \(indexPath)")
         
+        cell.flagImage.image = UIImage(named: "\(theme.mapCode)\(theme.order)")
         cell.tag = indexPath.row
         cell.themeName.text = theme.name
         

@@ -37,6 +37,7 @@
 		B0824DB11AE6E69A0035A8EB /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0824DB01AE6E69A0035A8EB /* OpenGLES.framework */; };
 		B0824DB31AE6E6A10035A8EB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0824DB21AE6E6A10035A8EB /* QuartzCore.framework */; };
 		B0824DB51AE6E6AB0035A8EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0824DB41AE6E6AB0035A8EB /* SystemConfiguration.framework */; };
+		B0C8EA641B14B4BD001D85A5 /* southafrica-specs.png in Resources */ = {isa = PBXBuildFile; fileRef = B0C8EA631B14B4BD001D85A5 /* southafrica-specs.png */; };
 		B0E4F5111B011856007D6424 /* locales.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0E4F5101B011856007D6424 /* locales.plist */; };
 		B0E4F5151B018089007D6424 /* WinLose.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E4F5141B018089007D6424 /* WinLose.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 		B0824DB21AE6E6A10035A8EB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B0824DB41AE6E6AB0035A8EB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B0824DB81AE6E99C0035A8EB /* MapIQ-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MapIQ-Bridging-Header.h"; sourceTree = "<group>"; };
+		B0C8EA631B14B4BD001D85A5 /* southafrica-specs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "southafrica-specs.png"; sourceTree = "<group>"; };
 		B0E4F5101B011856007D6424 /* locales.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = locales.plist; sourceTree = "<group>"; };
 		B0E4F5141B018089007D6424 /* WinLose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinLose.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +162,7 @@
 				B0708F2A1B0A92C100FAC25E /* brazil-specs.png */,
 				B00C56831B14000800156453 /* MODERNA.TTF */,
 				B00C567F1B13AE1500156453 /* usa-specs.png */,
+				B0C8EA631B14B4BD001D85A5 /* southafrica-specs.png */,
 				B0824D811AE6DD610035A8EB /* Images.xcassets */,
 				B0824D831AE6DD610035A8EB /* LaunchScreen.xib */,
 				B0824D781AE6DD610035A8EB /* Supporting Files */,
@@ -304,6 +307,7 @@
 				B0824D801AE6DD610035A8EB /* Main.storyboard in Resources */,
 				B00C56841B14000800156453 /* MODERNA.TTF in Resources */,
 				B0708F2B1B0A92C100FAC25E /* france-specs.png in Resources */,
+				B0C8EA641B14B4BD001D85A5 /* southafrica-specs.png in Resources */,
 				B0708F2F1B0A92C100FAC25E /* brazil-specs.png in Resources */,
 				B0824D851AE6DD610035A8EB /* LaunchScreen.xib in Resources */,
 				B0824D821AE6DD610035A8EB /* Images.xcassets in Resources */,

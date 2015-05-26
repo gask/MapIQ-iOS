@@ -155,39 +155,7 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
                 self.map.frame = CGRect(x: 0, y: Double(screenSize.height)/2-Double(screenSize.width)/2, width: Double(screenSize.width), height: Double(screenSize.width))
                 
             }
-        } else if mapName == "france" {
-            
-            mapWidth = screenSize.width < screenSize.height ? Double(screenSize.width) : Double(screenSize.height)
-            mapHeight = screenSize.width < screenSize.height ? Double(screenSize.width) : Double(screenSize.height)
-            
-            //println("screensize: \(screenSize)")
-            self.map.frame = CGRect(x: Double(screenSize.width)/2-self.mapWidth/2, y: Double(screenSize.height)/2-self.mapHeight/2, width: self.mapWidth, height: self.mapHeight)
-            
-        } else if mapName == "uk" {
-            mapWidth = screenSize.width < screenSize.height ? Double(screenSize.width) : Double(screenSize.height)
-            mapHeight = screenSize.width < screenSize.height ? Double(screenSize.width) : Double(screenSize.height)
-            
-            //println("screensize: \(screenSize)")
-            self.map.frame = CGRect(x: Double(screenSize.width)/2-self.mapWidth/2, y: Double(screenSize.height)/2-self.mapHeight/2, width: self.mapWidth, height: self.mapHeight)
-        } else if mapName == "australia" {
-            mapWidth = screenSize.width < screenSize.height ? Double(screenSize.width) : Double(screenSize.height)
-            mapHeight = screenSize.width < screenSize.height ? Double(screenSize.width) : Double(screenSize.height)
-            
-            //println("screensize: \(screenSize)")
-            self.map.frame = CGRect(x: Double(screenSize.width)/2-self.mapWidth/2, y: Double(screenSize.height)/2-self.mapHeight/2, width: self.mapWidth, height: self.mapHeight)
-        } else if mapName == "china" {
-            mapWidth = screenSize.width < screenSize.height ? Double(screenSize.width) : Double(screenSize.height)
-            mapHeight = screenSize.width < screenSize.height ? Double(screenSize.width) : Double(screenSize.height)
-            
-            //println("screensize: \(screenSize)")
-            self.map.frame = CGRect(x: Double(screenSize.width)/2-self.mapWidth/2, y: Double(screenSize.height)/2-self.mapHeight/2, width: self.mapWidth, height: self.mapHeight)
-        } else if mapName == "brazil" {
-            mapWidth = screenSize.width < screenSize.height ? Double(screenSize.width) : Double(screenSize.height)
-            mapHeight = screenSize.width < screenSize.height ? Double(screenSize.width) : Double(screenSize.height)
-            
-            //println("screensize: \(screenSize)")
-            self.map.frame = CGRect(x: Double(screenSize.width)/2-self.mapWidth/2, y: Double(screenSize.height)/2-self.mapHeight/2, width: self.mapWidth, height: self.mapHeight)
-        } else if mapName == "usa" {
+        } else {
             mapWidth = screenSize.width < screenSize.height ? Double(screenSize.width) : Double(screenSize.height)
             mapHeight = screenSize.width < screenSize.height ? Double(screenSize.width) : Double(screenSize.height)
             
@@ -313,6 +281,12 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
             yBorder = 5103.87
             mapW = 17024.0
             mapH = 17024.0
+        } else if mapName == "southafrica" {
+            mapMultiplier = CGFloat(1803.0/mapWidth)
+            xBorder = 18452.5
+            yBorder = 18942.8
+            mapW = 34038.0
+            mapH = 34038.0
         }
         
         let adjustedPixelPoint = CGPoint(x: mapMultiplier*pixelPoint.x+xBorder, y: mapMultiplier*pixelPoint.y+yBorder)
@@ -372,6 +346,12 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
             yBorder = 5103.87
             mapW = 17024.0
             mapH = 17024.0
+        } else if mapName == "southafrica" {
+            mapMultiplier = CGFloat(1803.0/mapWidth)
+            xBorder = 18452.5
+            yBorder = 18942.8
+            mapW = 34038.0
+            mapH = 34038.0
         }
         
         
@@ -397,7 +377,7 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
             println("touch coord: \(getCoordinate(sender.locationInView(map)))")
             println("pixel back: \(getPixelPoint(getCoordinate(sender.locationInView(map))))")
             
-            println("point west north \(mapName): \(getPixelPoint(CGPoint(x: -124.9699, y: 58.2633), test: true))")
+            println("point west north \(mapName): \(getPixelPoint(CGPoint(x: 15.1611, y: -19.932), test: true))")
             //println("point east south \(mapName): \(getPixelPoint(CGPoint(x: 154.5018, y: -44.9648), test: true))")
             myPoint = sender.locationInView(map)
         } else {
@@ -416,6 +396,29 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
                     println("distance: \(dist)")
                     
                     timer.invalidate()
+                    
+                    /*
+                    for(int i = 0 ; i < Flow.Game.currentGame.myGuessList.Count ; i++)
+                    {
+                    int distanceComponent = (int) Math.Round(0.00008f*Math.Pow(Flow.Game.currentGame.myGuessList[i].distance/multiplier/constant,2)-1.1908f*Flow.Game.currentGame.myGuessList[i].distance/multiplier/constant+2400.6f,0);
+                    if(distanceComponent < 0) distanceComponent = 0;
+                    int timeComponent = (int) Math.Round((20*(maxTime-Flow.Game.currentGame.myGuessList[i].time)*timePoints),0);
+                    
+                    Flow.Game.currentGame.myGuessList[i].score = distanceComponent + timeComponent;
+                    if(Flow.Game.currentGame.myGuessList[i].score < 0) Flow.Game.currentGame.myGuessList[i].score = 0;
+                    
+                    levelScore += Flow.Game.currentGame.myGuessList[i].score;
+                    }
+                    */
+                    
+                    
+                    // z1 2128 - world
+                    // z2 5256
+                    // z3 8512
+                    // z4 17024 - china, usa - 1/8
+                    // z5 34038 - brazil, southafrica, australia - 1/16
+                    // z6 68096 - france, uk - 1/32
+                    
                     
                     var gi = GameEntry(distance: dist, coordinate: myCoordinate, score: getRoundScore(time: time, distance: dist), time: time, cityName: rightArray[roundCount].name)
                     coordinateArray.append(gi)
@@ -527,8 +530,32 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     }
     
     func getRoundScore(time tim: Double, distance dist: Double) -> Int {
+        var mapMult = Double(1.0)
         
-        return 0
+        switch mapName {
+        case "usa", "china":
+            mapMult = Double(1/8)
+        case "brazil", "southafrica", "australia":
+            mapMult = Double(1/16)
+        case "uk", "france":
+            mapMult = Double(1/32)
+        default:
+            mapMult = Double(1)
+        }
+        
+        var distanceComponent = round(Double(0.00008) * pow(dist/mapMult/5,2) - Double(1.1908)*dist/mapMult/5 + Double(2400.6))
+        if distanceComponent < 0 {
+            distanceComponent = 0
+        }
+        var timeComponent = round(Double(20)*(10.0-time)*Double(1.0))
+        let retVal = distanceComponent + timeCompnent
+        
+        if retVal < 0 {
+            return 0
+        } else {
+            return retVal
+        }
+        
     }
     
     let earthRadius = 6371.0
@@ -651,12 +678,7 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    // z1 2128
-    // z2 5256
-    // z3 8512
-    // z4 17024
-    // z5 34038
-    // z6 68096
+    
     
     
     

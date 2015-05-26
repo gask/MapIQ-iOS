@@ -8,7 +8,7 @@
 	<array>
 		<dict>
 			<key>pointsToUnlock</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>bundle</key>
 			<string></string>
 			<key>tier</key>
@@ -21,6 +21,8 @@
 			<integer>1</integer>
 			<key>mapCode</key>
 			<string>world</string>
+			<key>order</key>
+			<integer>1</integer>
 			<key>locales</key>
 			<array>
 				<dict>
@@ -147,7 +149,7 @@
 		</dict>
 		<dict>
 			<key>pointsToUnlock</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>bundle</key>
 			<string></string>
 			<key>tier</key>
@@ -160,6 +162,8 @@
 			<integer>2</integer>
 			<key>mapCode</key>
 			<string>france</string>
+			<key>order</key>
+			<integer>1</integer>
 			<key>locales</key>
 			<array>
 				<dict>
@@ -226,7 +230,7 @@
 		</dict>
 		<dict>
 			<key>pointsToUnlock</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>bundle</key>
 			<string></string>
 			<key>tier</key>
@@ -239,6 +243,8 @@
 			<integer>8</integer>
 			<key>mapCode</key>
 			<string>uk</string>
+			<key>order</key>
+			<integer>1</integer>
 			<key>locales</key>
 			<array>
 				<dict>
@@ -305,7 +311,7 @@
 		</dict>
 		<dict>
 			<key>pointsToUnlock</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>bundle</key>
 			<string></string>
 			<key>tier</key>
@@ -318,6 +324,8 @@
 			<integer>7</integer>
 			<key>mapCode</key>
 			<string>australia</string>
+			<key>order</key>
+			<integer>1</integer>
 			<key>locales</key>
 			<array>
 				<dict>
@@ -384,7 +392,7 @@
 		</dict>
 		<dict>
 			<key>pointsToUnlock</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>bundle</key>
 			<string></string>
 			<key>tier</key>
@@ -397,6 +405,8 @@
 			<integer>6</integer>
 			<key>mapCode</key>
 			<string>china</string>
+			<key>order</key>
+			<integer>1</integer>
 			<key>locales</key>
 			<array>
 				<dict>
@@ -463,7 +473,7 @@
 		</dict>
 		<dict>
 			<key>pointsToUnlock</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>bundle</key>
 			<string></string>
 			<key>tier</key>
@@ -476,6 +486,8 @@
 			<integer>3</integer>
 			<key>mapCode</key>
 			<string>brazil</string>
+			<key>order</key>
+			<integer>1</integer>
 			<key>locales</key>
 			<array>
 				<dict>
@@ -542,7 +554,7 @@
 		</dict>
 		<dict>
 			<key>pointsToUnlock</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>bundle</key>
 			<string></string>
 			<key>tier</key>
@@ -555,6 +567,8 @@
 			<integer>5</integer>
 			<key>mapCode</key>
 			<string>usa</string>
+			<key>order</key>
+			<integer>1</integer>
 			<key>locales</key>
 			<array>
 				<dict>
@@ -614,6 +628,87 @@
 					<string>39.9523</string>
 					<key>longitude</key>
 					<string>-75.1638</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>pointsToUnlock</key>
+			<integer>0</integer>
+			<key>bundle</key>
+			<string></string>
+			<key>tier</key>
+			<string>0</string>
+			<key>name</key>
+			<string>Cities of South Africa I</string>
+			<key>parent</key>
+			<integer>-1</integer>
+			<key>ID</key>
+			<integer>4</integer>
+			<key>mapCode</key>
+			<string>southafrica</string>
+			<key>order</key>
+			<integer>1</integer>
+			<key>locales</key>
+			<array>
+				<dict>
+					<key>localeID</key>
+					<integer>1812</integer>
+					<key>localeName</key>
+					<string>Johannesburg</string>
+					<key>latitude</key>
+					<string>-26.2041</string>
+					<key>longitude</key>
+					<string>28.0473</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>1813</integer>
+					<key>localeName</key>
+					<string>Cape Town</string>
+					<key>latitude</key>
+					<string>-33.9249</string>
+					<key>longitude</key>
+					<string>18.4241</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>1814</integer>
+					<key>localeName</key>
+					<string>Durban</string>
+					<key>latitude</key>
+					<string>-29.8579</string>
+					<key>longitude</key>
+					<string>31.0276</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>1815</integer>
+					<key>localeName</key>
+					<string>Germiston</string>
+					<key>latitude</key>
+					<string>-26.2178</string>
+					<key>longitude</key>
+					<string>28.1672</string>
+					<key>date</key>
+					<date>2015-05-11T17:21:07Z</date>
+				</dict>
+				<dict>
+					<key>localeID</key>
+					<integer>1816</integer>
+					<key>localeName</key>
+					<string>Pretoria</string>
+					<key>latitude</key>
+					<string>-25.7313</string>
+					<key>longitude</key>
+					<string>28.2184</string>
 					<key>date</key>
 					<date>2015-05-11T17:21:07Z</date>
 				</dict>

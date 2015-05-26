@@ -41,13 +41,17 @@ class Theme: NSObject {
     var mapCode : String
     var parent : Int
     var locales : [Locale]
+    var pointsToUnlock : Int
+    var order : Int
     
-    init(ID id:Int, name tName:String, mapCode mCode:String, parentTheme pTheme:Int) {
+    init(ID id:Int, name tName:String, mapCode mCode:String, parentTheme pTheme:Int, unlockPts: Int, tOrder: Int) {
         ID = id
         name = tName
         mapCode = mCode
         parent = pTheme
         locales = []
+        pointsToUnlock = unlockPts
+        order = tOrder
     }
     
     override var description : String {
@@ -93,6 +97,7 @@ class Locale : NSObject {
 
 class ThemeCell : UITableViewCell {
     
+    @IBOutlet var flagImage: UIImageView!
     @IBOutlet var maxLevel: UILabel!
     @IBOutlet var maxScore: UILabel!
     @IBOutlet var themeName: UILabel!
