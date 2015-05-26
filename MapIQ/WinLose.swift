@@ -31,7 +31,7 @@ class WinLose : UIViewController {
         for i in 0..<gameVariables.count {
             nameLabels[i].text = gameVariables[i].city
             distanceLabels[i].text = String(format: "%.0f", gameVariables[i].distance)
-            timeLabels[i].text = "\(gameVariables[i].time)s"
+            timeLabels[i].text = String(format: "%.1f", gameVariables[i].time)+"s"
         }
         
     }

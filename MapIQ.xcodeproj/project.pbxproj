@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		85D2B50E1AE9861200F88DC6 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D2B50D1AE9861200F88DC6 /* Classes.swift */; };
+		B00C56801B13AE1500156453 /* usa-specs.png in Resources */ = {isa = PBXBuildFile; fileRef = B00C567F1B13AE1500156453 /* usa-specs.png */; };
+		B00C56821B13C53600156453 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00C56811B13C53600156453 /* Menu.swift */; };
+		B00C56841B14000800156453 /* MODERNA.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B00C56831B14000800156453 /* MODERNA.TTF */; };
 		B0708F2B1B0A92C100FAC25E /* france-specs.png in Resources */ = {isa = PBXBuildFile; fileRef = B0708F261B0A92C000FAC25E /* france-specs.png */; };
 		B0708F2C1B0A92C100FAC25E /* uk-specs.png in Resources */ = {isa = PBXBuildFile; fileRef = B0708F271B0A92C100FAC25E /* uk-specs.png */; };
 		B0708F2D1B0A92C100FAC25E /* australia-specs.png in Resources */ = {isa = PBXBuildFile; fileRef = B0708F281B0A92C100FAC25E /* australia-specs.png */; };
@@ -50,6 +53,9 @@
 
 /* Begin PBXFileReference section */
 		85D2B50D1AE9861200F88DC6 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
+		B00C567F1B13AE1500156453 /* usa-specs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "usa-specs.png"; sourceTree = "<group>"; };
+		B00C56811B13C53600156453 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		B00C56831B14000800156453 /* MODERNA.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = MODERNA.TTF; sourceTree = "<group>"; };
 		B0708F261B0A92C000FAC25E /* france-specs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "france-specs.png"; sourceTree = "<group>"; };
 		B0708F271B0A92C100FAC25E /* uk-specs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uk-specs.png"; sourceTree = "<group>"; };
 		B0708F281B0A92C100FAC25E /* australia-specs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "australia-specs.png"; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 			children = (
 				B0824D7A1AE6DD610035A8EB /* AppDelegate.swift */,
 				B0824D7C1AE6DD610035A8EB /* ThemeSelection.swift */,
+				B00C56811B13C53600156453 /* Menu.swift */,
 				B07316221AEEDED60087A615 /* Game.swift */,
 				B0E4F5141B018089007D6424 /* WinLose.swift */,
 				B0E4F5101B011856007D6424 /* locales.plist */,
@@ -151,6 +158,8 @@
 				B0708F281B0A92C100FAC25E /* australia-specs.png */,
 				B0708F291B0A92C100FAC25E /* china-specs.png */,
 				B0708F2A1B0A92C100FAC25E /* brazil-specs.png */,
+				B00C56831B14000800156453 /* MODERNA.TTF */,
+				B00C567F1B13AE1500156453 /* usa-specs.png */,
 				B0824D811AE6DD610035A8EB /* Images.xcassets */,
 				B0824D831AE6DD610035A8EB /* LaunchScreen.xib */,
 				B0824D781AE6DD610035A8EB /* Supporting Files */,
@@ -293,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0824D801AE6DD610035A8EB /* Main.storyboard in Resources */,
+				B00C56841B14000800156453 /* MODERNA.TTF in Resources */,
 				B0708F2B1B0A92C100FAC25E /* france-specs.png in Resources */,
 				B0708F2F1B0A92C100FAC25E /* brazil-specs.png in Resources */,
 				B0824D851AE6DD610035A8EB /* LaunchScreen.xib in Resources */,
@@ -302,6 +312,7 @@
 				B0708F2E1B0A92C100FAC25E /* china-specs.png in Resources */,
 				B0E4F5111B011856007D6424 /* locales.plist in Resources */,
 				B0708F2D1B0A92C100FAC25E /* australia-specs.png in Resources */,
+				B00C56801B13AE1500156453 /* usa-specs.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B00C56821B13C53600156453 /* Menu.swift in Sources */,
 				B0E4F5151B018089007D6424 /* WinLose.swift in Sources */,
 				85D2B50E1AE9861200F88DC6 /* Classes.swift in Sources */,
 				B07316231AEEDED60087A615 /* Game.swift in Sources */,
@@ -461,6 +473,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MapIQ/MapIQ-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -478,6 +491,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MapIQ/MapIQ-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
