@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class GameEntry : NSObject {
     var distance: Double!

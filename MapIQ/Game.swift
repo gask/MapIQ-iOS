@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Game : UIViewController, UIGestureRecognizerDelegate {
     
@@ -543,12 +544,15 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
             mapMult = Double(1)
         }
         
-        var distanceComponent = round(Double(0.00008) * pow(dist/mapMult/5,2) - Double(1.1908)*dist/mapMult/5 + Double(2400.6))
+        let distcomp1 = Double(0.00008) * pow(dist/mapMult/5,2)
+        let distcomp2 = Double(1.1908)*dist/mapMult/5 + Double(2400.6)
+        
+        var distanceComponent = Int(round(distcomp1 - distcomp2))
         if distanceComponent < 0 {
             distanceComponent = 0
         }
-        var timeComponent = round(Double(20)*(10.0-time)*Double(1.0))
-        let retVal = distanceComponent + timeCompnent
+        var timeComponent = Int(round(Double(20)*(10.0-time)*Double(1.0)))
+        let retVal = distanceComponent + timeComponent
         
         if retVal < 0 {
             return 0
