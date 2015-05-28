@@ -398,27 +398,7 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
                     
                     timer.invalidate()
                     
-                    /*
-                    for(int i = 0 ; i < Flow.Game.currentGame.myGuessList.Count ; i++)
-                    {
-                    int distanceComponent = (int) Math.Round(0.00008f*Math.Pow(Flow.Game.currentGame.myGuessList[i].distance/multiplier/constant,2)-1.1908f*Flow.Game.currentGame.myGuessList[i].distance/multiplier/constant+2400.6f,0);
-                    if(distanceComponent < 0) distanceComponent = 0;
-                    int timeComponent = (int) Math.Round((20*(maxTime-Flow.Game.currentGame.myGuessList[i].time)*timePoints),0);
                     
-                    Flow.Game.currentGame.myGuessList[i].score = distanceComponent + timeComponent;
-                    if(Flow.Game.currentGame.myGuessList[i].score < 0) Flow.Game.currentGame.myGuessList[i].score = 0;
-                    
-                    levelScore += Flow.Game.currentGame.myGuessList[i].score;
-                    }
-                    */
-                    
-                    
-                    // z1 2128 - world
-                    // z2 5256
-                    // z3 8512
-                    // z4 17024 - china, usa - 1/8
-                    // z5 34038 - brazil, southafrica, australia - 1/16
-                    // z6 68096 - france, uk - 1/32
                     
                     
                     var gi = GameEntry(distance: dist, coordinate: myCoordinate, score: getRoundScore(time: time, distance: dist), time: time, cityName: rightArray[roundCount].name)
@@ -531,29 +511,55 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     }
     
     func getRoundScore(time tim: Double, distance dist: Double) -> Int {
+        /*
+        for(int i = 0 ; i < Flow.Game.currentGame.myGuessList.Count ; i++)
+        {
+        int distanceComponent = (int) Math.Round(0.00008f*Math.Pow(Flow.Game.currentGame.myGuessList[i].distance/multiplier/constant,2)-1.1908f*Flow.Game.currentGame.myGuessList[i].distance/multiplier/constant+2400.6f,0);
+        if(distanceComponent < 0) distanceComponent = 0;
+        int timeComponent = (int) Math.Round((20*(maxTime-Flow.Game.currentGame.myGuessList[i].time)*timePoints),0);
+        
+        Flow.Game.currentGame.myGuessList[i].score = distanceComponent + timeComponent;
+        if(Flow.Game.currentGame.myGuessList[i].score < 0) Flow.Game.currentGame.myGuessList[i].score = 0;
+        
+        levelScore += Flow.Game.currentGame.myGuessList[i].score;
+        }
+        */
+        
+        
+        // z1 2128 - world
+        // z2 5256
+        // z3 8512
+        // z4 17024 - china, usa - 1/8
+        // z5 34038 - brazil, southafrica, australia - 1/16
+        // z6 68096 - france, uk - 1/32
+        
         var mapMult = Double(1.0)
         
         switch mapName {
         case "usa", "china":
-            mapMult = Double(1/8)
+            mapMult = Double(1.0/8.0)
         case "brazil", "southafrica", "australia":
-            mapMult = Double(1/16)
+            mapMult = Double(1.0/16.0)
         case "uk", "france":
-            mapMult = Double(1/32)
+            mapMult = Double(1.0/32.0)
         default:
-            mapMult = Double(1)
+            mapMult = Double(1.0)
         }
         
-        let distcomp1 = Double(0.00008) * pow(dist/mapMult/5,2)
-        let distcomp2 = Double(1.1908)*dist/mapMult/5 + Double(2400.6)
+        //println("pow \(pow(dist/mapMult/5.0,2))")
         
-        var distanceComponent = Int(round(distcomp1 - distcomp2))
+        let distcomp1 = Double(0.00008) * pow(dist/mapMult/5.0,2)
+        let distcomp2 = Double(-1.1908)*(dist/mapMult/5.0) + Double(2400.6)
+        
+        //println("dist1: \(distcomp1), dist2: \(distcomp2), distComp: \(distcomp1+distcomp2)")
+        
+        var distanceComponent = Int(round(distcomp1 + distcomp2))
         if distanceComponent < 0 {
             distanceComponent = 0
         }
         var timeComponent = Int(round(Double(20)*(10.0-time)*Double(1.0)))
         let retVal = distanceComponent + timeComponent
-        
+        //println("retVal: \(retVal) dist: \(distanceComponent), time: \(timeComponent)")
         if retVal < 0 {
             return 0
         } else {
