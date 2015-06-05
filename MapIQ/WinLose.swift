@@ -20,26 +20,12 @@ class WinLose : UIViewController {
     var distanceBarBackgrounds = [UIImageView]()
     var timeBarBackgrounds = [UIImageView]()
     var accumulatedScore = 0
+    var lastLabelMoved = -1
+    var labelMoving = -1
+    let halfTotalSize = 27.0*6.0/2.0
     
     override func viewDidLoad() {
-        /*for view in self.view.subviews {
-            if let label = view as? UILabel {
-                if label.tag > 0 && label.tag < 10 {
-                    nameLabels[label.tag-1] = label
-                } else if label.tag > 10 && label.tag < 20{
-                    distanceLabels[label.tag-11] = label
-                } else if label.tag > 20 {
-                    timeLabels[label.tag-21] = label
-                }
-            }
-        }
         
-        for i in 0..<gameVariables.count {
-            println(gameVariables[i])
-            nameLabels[i].text = gameVariables[i].city
-            distanceLabels[i].text = String(format: "%.0f", gameVariables[i].distance)
-            timeLabels[i].text = String(format: "%.1f", gameVariables[i].time)+"s"
-        }*/
         
     }
     
@@ -49,7 +35,6 @@ class WinLose : UIViewController {
         let screenSize = UIScreen.mainScreen().bounds
         
         for i in 0...gameVariables.count { // includes the title label bar background
-            let halfTotalSize = 27.0*6.0/2.0
             
             var cityBg = UIImageView(image: UIImage(named: "bar"))
             cityBg.frame = CGRect(x: -320.0, y: Double(screenSize.size.height)/2.0 - halfTotalSize + Double(i)*27.0, width: 180.0, height: 27.0)
@@ -99,24 +84,71 @@ class WinLose : UIViewController {
         }
         moveLabels(0)
         
-        animateScore(0.5, targetScore: 4000, callback: Selector("uhu"))
+        //animateScore(0.5, targetScore: 4000, callback: Selector("uhu"))
     }
     
-    func uhu() {
-        println("maluco, executou isso aqui, sou o pelé")
+    func finishScoreAnimation(index: NSNumber) {
+        println("maluco \(index.integerValue) gmVar: \(self.gameVariables.count)")
+        if index.integerValue < self.gameVariables.count {
+            println("maluco, executou isso aqui, sou o pelé \(index.integerValue)")
+            self.moveLabels(index.integerValue+1)
+        } else {
+            println("maluco é o fim.")
+        }
+        
     }
-    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        
+        let screenSize = UIScreen.mainScreen().bounds
+        
+        if self.labelMoving != -1 {
+            println("move a zica ae.")
+            self.cityBarBackgrounds[self.labelMoving].layer.removeAllAnimations()
+            self.nameLabels[self.labelMoving].layer.removeAllAnimations()
+            self.distanceBarBackgrounds[self.labelMoving].layer.removeAllAnimations()
+            self.distanceLabels[self.labelMoving].layer.removeAllAnimations()
+            self.timeBarBackgrounds[self.labelMoving].layer.removeAllAnimations()
+            self.timeLabels[self.labelMoving].layer.removeAllAnimations()
+            
+            self.cityBarBackgrounds[self.labelMoving].frame = CGRect(x: Double(screenSize.size.width)/2.0 - 320.0/2.0, y: Double(screenSize.size.height)/2.0 - halfTotalSize + Double(self.labelMoving)*27.0, width: 180.0, height: 27.0)
+            self.nameLabels[self.labelMoving].frame = CGRect(x: 0.0, y: 0.0, width: 178.0, height: 25.0)
+            self.nameLabels[self.labelMoving].center = self.cityBarBackgrounds[self.labelMoving].center
+            self.distanceBarBackgrounds[self.labelMoving].frame = CGRect(x: Double(screenSize.size.width)/2.0 - 320.0/2.0 + 180.0, y: Double(screenSize.size.height)/2 - halfTotalSize + Double(self.labelMoving)*27.0, width: 70.0, height: 27.0)
+            self.distanceLabels[self.labelMoving].frame = CGRect(x: 0.0, y: 0.0, width: 68.0, height: 25.0)
+            self.distanceLabels[self.labelMoving].center = self.distanceBarBackgrounds[self.labelMoving].center
+            self.timeBarBackgrounds[self.labelMoving].frame = CGRect(x: Double(self.distanceBarBackgrounds[self.labelMoving].frame.origin.x) + 70.0, y: Double(screenSize.size.height)/2 - halfTotalSize + Double(self.labelMoving)*27.0, width: 70.0, height: 27.0)
+            self.timeLabels[self.labelMoving].frame = CGRect(x: 0.0, y: 0.0, width: 68.0, height: 25.0)
+            self.timeLabels[self.labelMoving].center = self.timeBarBackgrounds[self.labelMoving].center
+        }
+        
+        for k in 0...self.lastLabelMoved {
+            self.cityBarBackgrounds[k].frame = CGRect(x: Double(screenSize.size.width)/2.0 - 320.0/2.0, y: Double(screenSize.size.height)/2.0 - halfTotalSize + Double(k)*27.0, width: 180.0, height: 27.0)
+            self.nameLabels[k].frame = CGRect(x: 0.0, y: 0.0, width: 178.0, height: 25.0)
+            self.nameLabels[k].center = self.cityBarBackgrounds[k].center
+            self.distanceBarBackgrounds[k].frame = CGRect(x: Double(screenSize.size.width)/2.0 - 320.0/2.0 + 180.0, y: Double(screenSize.size.height)/2 - halfTotalSize + Double(k)*27.0, width: 70.0, height: 27.0)
+            self.distanceLabels[k].frame = CGRect(x: 0.0, y: 0.0, width: 68.0, height: 25.0)
+            self.distanceLabels[k].center = self.distanceBarBackgrounds[k].center
+            self.timeBarBackgrounds[k].frame = CGRect(x: Double(self.distanceBarBackgrounds[k].frame.origin.x) + 70.0, y: Double(screenSize.size.height)/2 - halfTotalSize + Double(k)*27.0, width: 70.0, height: 27.0)
+            self.timeLabels[k].frame = CGRect(x: 0.0, y: 0.0, width: 68.0, height: 25.0)
+            self.timeLabels[k].center = self.timeBarBackgrounds[k].center
+        }
+    }
     func moveLabels(index:Int) {
-        //println("index: \(index)")
-        //println("view: \(self.nameLabels[index])")
+        println("index: \(index)")
+        println("view: \(self.nameLabels[index])")
         let screenSize = UIScreen.mainScreen().bounds
         UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseIn, animations: {
+            println("animation \(index) started")
+            self.labelMoving = index
             var newFr1 = self.cityBarBackgrounds[index].frame
             var newFr2 = self.distanceBarBackgrounds[index].frame
             var newFr3 = self.timeBarBackgrounds[index].frame
             newFr1.origin.x = CGFloat(screenSize.size.width)/2.0 - 320.0/2.0
             newFr2.origin.x = CGFloat(screenSize.size.width)/2.0 - 320.0/2.0 + 180.0
             newFr3.origin.x = CGFloat(screenSize.size.width)/2.0 - 320.0/2.0 + 180.0 + 70.0
+            newFr1.origin.y = CGFloat(screenSize.size.height)/2.0 - CGFloat(self.halfTotalSize) + CGFloat(index)*27.0
+            newFr2.origin.y = CGFloat(screenSize.size.height)/2 - CGFloat(self.halfTotalSize) + CGFloat(index)*27.0
+            newFr3.origin.y = CGFloat(screenSize.size.height)/2 - CGFloat(self.halfTotalSize) + CGFloat(index)*27.0
             
             var newFrLb1 = self.nameLabels[index].frame
             var newFrLb2 = self.distanceLabels[index].frame
@@ -124,6 +156,9 @@ class WinLose : UIViewController {
             newFrLb1.origin.x = CGFloat(screenSize.size.width)/2.0 - 320.0/2.0 + 1.0
             newFrLb2.origin.x = CGFloat(screenSize.size.width)/2.0 - 320.0/2.0 + 1.0 + 180.0 + 1.0
             newFrLb3.origin.x = CGFloat(screenSize.size.width)/2.0 - 320.0/2.0 + 1.0 + 180.0 + 70.0 + 1.0
+            newFrLb1.origin.y = CGFloat(screenSize.size.height)/2.0 - CGFloat(self.halfTotalSize) + CGFloat(index)*27.0 + 1.0
+            newFrLb2.origin.y = CGFloat(screenSize.size.height)/2 - CGFloat(self.halfTotalSize) + CGFloat(index)*27.0 + 1.0
+            newFrLb3.origin.y = CGFloat(screenSize.size.height)/2 - CGFloat(self.halfTotalSize) + CGFloat(index)*27.0 + 1.0
             
             self.cityBarBackgrounds[index].frame = newFr1
             self.nameLabels[index].frame = newFrLb1
@@ -132,12 +167,19 @@ class WinLose : UIViewController {
             self.timeBarBackgrounds[index].frame = newFr3
             self.timeLabels[index].frame = newFrLb3
         }, completion: { finished -> Void in
-            if index < self.cityBarBackgrounds.count-1 {
+            println("animation \(index) finished")
+            self.lastLabelMoved = index
+            self.labelMoving = -1
+            if index <= self.cityBarBackgrounds.count-1 {
                 if index != 0 {
                     self.accumulatedScore += self.gameVariables[index-1].score
                     //self.scoreLabel.text = "Score: \(self.accumulatedScore)"
+                    self.animateScore(0.5, targetScore: self.gameVariables[index-1].score, callback: Selector("finishScoreAnimation:"), index: index)
+                } else {
+                    self.moveLabels(1)
                 }
-                self.moveLabels(index+1)
+                //self.moveLabels(index+1)
+                
             }
         })
     }
@@ -146,37 +188,46 @@ class WinLose : UIViewController {
     var accNumberScoreTimer = 0
     var callBackScoreTimer : Selector?
     func changeScoreLabel(timer: NSTimer) {
-        println(accNumberScoreTimer)
+        //println(accNumberScoreTimer)
         
         if let dict = timer.userInfo as? [String:AnyObject] {
             if let timeLimit = dict["time"] as? Double {
-                if timeElapsedScoreTimer <= timeLimit {
-                    if let targetScore = dict["target"] as? Int {
-                        //println("adding \(Int(Double(targetScore)*0.01/timeLimit))")
-                        //println("subtr \(targetScore - accNumberScoreTimer)")
-                        if targetScore - accNumberScoreTimer <= Int(Double(targetScore)*0.01/timeLimit) {
-                            accNumberScoreTimer = targetScore
-                        } else {
-                            accNumberScoreTimer += Int(Double(targetScore)*0.01/timeLimit)
-                        }
-                        
-                        scoreLabel.text = "Score: \(accNumberScoreTimer)"
+                //println("tE: \(timeElapsedScoreTimer)")
+                
+                if let addingScore = dict["target"] as? Int {
+                    //println("adding \(Int(round(Double(addingScore)*0.01/timeLimit)))")
+                    //println("subtr \(self.accumulatedScore - accNumberScoreTimer)")
+                    if self.accumulatedScore - accNumberScoreTimer <= Int(round(Double(addingScore)*0.01/timeLimit)) {
+                        accNumberScoreTimer = self.accumulatedScore
+                    } else {
+                        accNumberScoreTimer += Int(round(Double(addingScore)*0.01/timeLimit))
                     }
-                } else {
-                    
-                    NSThread.detachNewThreadSelector(callBackScoreTimer!, toTarget:self, withObject: nil)
-                    callBackScoreTimer = nil
-                    timer.invalidate()
-                    timeElapsedScoreTimer = 0.0
-                    accNumberScoreTimer = 0
+                        
+                    scoreLabel.text = "Score: \(accNumberScoreTimer)"
+                        
+                        
+                }
+                
+                if timeElapsedScoreTimer > timeLimit {
+                    if let scoreIndex = dict["index"] as? Int {
+                        //println("se todo mundo sambasse... \(scoreIndex)")
+                        scoreLabel.text = "Score: \(self.accumulatedScore)"
+                        NSThread.detachNewThreadSelector(callBackScoreTimer!, toTarget:self, withObject: NSNumber(integer: scoreIndex))
+                        callBackScoreTimer = nil
+                        timer.invalidate()
+                        timeElapsedScoreTimer = 0.0
+                        //accNumberScoreTimer = 0
+                    }
                 }
             }
         }
         timeElapsedScoreTimer += 0.01
     }
     
-    func animateScore(time: Double, targetScore: Int, callback: Selector = nil) {
-        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("changeScoreLabel:"), userInfo: ["time":time, "target":targetScore], repeats: true)
+    func animateScore(time: Double, targetScore: Int, callback: Selector = nil, index: Int) {
+        println("greg duv \(index)")
+        println("acc score \(self.accumulatedScore)")
+        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("changeScoreLabel:"), userInfo: ["time":time, "target":targetScore, "index":index], repeats: true)
         callBackScoreTimer = callback
         
     }
