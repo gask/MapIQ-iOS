@@ -306,16 +306,6 @@
                                     <action selector="nextRound:" destination="OU7-gA-5nh" eventType="touchUpInside" id="Pzs-wA-YEb"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="countdown1" translatesAutoresizingMaskIntoConstraints="NO" id="6Aq-va-VcJ" userLabel="CountdownImg">
-                                <rect key="frame" x="-111" y="230" width="111" height="140"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="111" id="Gn2-ep-b3c"/>
-                                    <constraint firstAttribute="height" constant="140" id="veY-oc-7Lu"/>
-                                </constraints>
-                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="-111" y="330" width="111" height="140"/>
-                                </variation>
-                            </imageView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="countdown1-1" translatesAutoresizingMaskIntoConstraints="NO" id="9Gj-1l-Ak3">
                                 <rect key="frame" x="245" y="230" width="111" height="140"/>
                                 <constraints>
@@ -356,7 +346,6 @@
                             <constraint firstItem="8JI-a4-BO6" firstAttribute="top" secondItem="KSf-km-rLb" secondAttribute="bottom" id="CYS-ui-rd6"/>
                             <constraint firstItem="1gD-RG-EMy" firstAttribute="top" secondItem="xFu-Vr-a7g" secondAttribute="bottom" id="GrM-IE-wy8"/>
                             <constraint firstItem="KSf-km-rLb" firstAttribute="centerY" secondItem="QbS-WS-jka" secondAttribute="centerY" constant="-11.5" id="HnI-kT-dHb"/>
-                            <constraint firstAttribute="centerY" secondItem="6Aq-va-VcJ" secondAttribute="centerY" id="Jff-IK-AWJ"/>
                             <constraint firstItem="KSf-km-rLb" firstAttribute="centerX" secondItem="QbS-WS-jka" secondAttribute="centerX" id="NVZ-Lw-GST"/>
                             <constraint firstItem="Uul-jn-70z" firstAttribute="leading" secondItem="Ov8-vS-cmI" secondAttribute="leading" id="f3u-iD-z3T"/>
                             <constraint firstItem="2M3-Ls-WaU" firstAttribute="trailing" secondItem="Ov8-vS-cmI" secondAttribute="trailing" id="hNH-sr-EtG"/>
@@ -368,7 +357,6 @@
                     <connections>
                         <outlet property="countdownFlashOne" destination="9Gj-1l-Ak3" id="6aC-ZG-yY2"/>
                         <outlet property="countdownFlashTwo" destination="yKa-8A-FVV" id="JzZ-Jx-d78"/>
-                        <outlet property="countdownImg" destination="6Aq-va-VcJ" id="RtD-Wr-ulb"/>
                         <outlet property="hintBtn" destination="Uul-jn-70z" id="mUI-Tw-PEs"/>
                         <outlet property="nextBtn" destination="2M3-Ls-WaU" id="c9H-3x-7PV"/>
                         <outlet property="placeName" destination="1gD-RG-EMy" id="WlJ-Qh-sxm"/>
@@ -687,7 +675,6 @@
         <image name="bar" width="314" height="48"/>
         <image name="bolinha" width="149" height="149"/>
         <image name="container" width="164" height="164"/>
-        <image name="countdown1" width="300" height="380"/>
         <image name="countdown1-1" width="300" height="380"/>
         <image name="countdown1-2" width="300" height="380"/>
         <image name="eurasia" width="650" height="820"/>

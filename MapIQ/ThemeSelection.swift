@@ -21,7 +21,7 @@ class ThemeSelection: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let info = plistFile as? [String:NSObject] {
             if let tArray = info["themes"] as? [NSDictionary]{
                 for tmpTheme in tArray {
-                    println("theme: \(tmpTheme)")
+                    //println("theme: \(tmpTheme)")
                     let ptUn = tmpTheme["pointsToUnlock"] as! Int
                     let ord = tmpTheme["order"] as! Int
                     var theme = Theme(ID: tmpTheme["ID"] as! Int, name: tmpTheme["name"] as! String, mapCode: tmpTheme["mapCode"] as! String, parentTheme: tmpTheme["parent"] as! Int, unlockPts: ptUn, tOrder: ord)
@@ -42,7 +42,7 @@ class ThemeSelection: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         //println("temas: \(themeArray)")
-        println("temas[1]: \(themeArray[1])")
+        //println("temas[1]: \(themeArray[1])")
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

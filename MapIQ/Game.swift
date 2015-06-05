@@ -22,7 +22,7 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet var nextBtn: UIButton!
     @IBOutlet var hintBtn: UIButton!
     
-    @IBOutlet var countdownImg: UIImageView!
+    var countdownImg = UIImageView(image: UIImage(named: "countdown1"))
     @IBOutlet var countdownFlashOne: UIImageView!
     @IBOutlet var countdownFlashTwo: UIImageView!
     
@@ -37,6 +37,8 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet var timeImage: UIImageView!
     let timeOver1 = UIImageView(image: UIImage(named: "timeOver1"))
     let timeOver2 = UIImageView(image: UIImage(named: "timeOver2"))
+    
+    var counterPhase = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,14 +92,14 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    override func shouldAutorotate() -> Bool {
+    /*override func shouldAutorotate() -> Bool {
         if self.animationGoing {
             return false
         } else {
             return true
         }
         
-    }
+    }*/
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         let screenSize = UIScreen.mainScreen().bounds
@@ -135,6 +137,19 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
             createOrChangeDistanceCircles(false)
         }
         
+        self.countdownImg.layer.removeAllAnimations()
+        self.animateCountdown(screenSize, times: self.counterPhase)
+        
+        /*if counterPhase == 0 {
+            //self.countdownImg.layer.removeAllAnimations()
+            self.countdownImg.frame = CGRect(x: -111.0, y: screenSize.height/2-140.0/2, width: 111.0, height: 140.0)
+        } else if counterPhase == 1 {
+            //self.countdownImg.layer.removeAllAnimations()
+            self.countdownImg.frame = CGRect(x: screenSize.width/2-140.0/2, y: screenSize.height/2-140.0/2, width: 111.0, height: 140.0)
+        } else if counterPhase == 2 {
+            //self.countdownImg.layer.removeAllAnimations()
+            self.countdownImg.frame = CGRect(x: screenSize.width, y: screenSize.height/2-140.0/2, width: 111.0, height: 140.0)
+        }*/
     }
     
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
@@ -168,7 +183,9 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     override func viewDidAppear(animated: Bool) {
         let screenSize = UIScreen.mainScreen().bounds
         
+        self.countdownImg.frame = CGRect(x: -111.0, y: screenSize.height/2-140.0/2, width: 111.0, height: 140.0)
         rightPoint = getPixelPoint(rightCoordinate)
+        self.view.addSubview(self.countdownImg)
         
         decideMapSize(screenSize)
         
@@ -179,15 +196,20 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
     
     func animateCountdown(screenSize:CGRect, times:Int) {
         
+        self.counterPhase = times
+        
         self.countdownImg.image = UIImage(named: "countdown\(times+1)")
         self.countdownFlashOne.image = UIImage(named: "countdown\(times+1)-1")
         self.countdownFlashTwo.image = UIImage(named: "countdown\(times+1)-2")
-        
+        println("count frame: \(self.countdownImg.frame)")
         UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseIn, animations: {
             self.animationGoing = true
+            //self.counterPhase = 1
             var centerFrame = self.countdownImg.frame
-            centerFrame.origin.x += screenSize.size.width/2+self.countdownImg.frame.size.width/2
+            centerFrame.origin.x = screenSize.size.width/2-self.countdownImg.frame.size.width/2
+            centerFrame.origin.y = screenSize.height/2-140.0/2
             
+            println("later frame: \(centerFrame)")
             self.countdownImg.frame = centerFrame
             }, completion: { finished in
                 
@@ -203,19 +225,24 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
                 });
                 
                 UIView.animateWithDuration(0.5, delay: 0.5, options: .CurveEaseOut, animations: {
+                    //self.counterPhase = 2
                     var endFrame = self.countdownImg.frame
-                    endFrame.origin.x += screenSize.size.width/2+self.countdownImg.frame.size.width/2
+                    endFrame.origin.x = screenSize.size.width
+                    endFrame.origin.y = screenSize.height/2-140.0/2
                     
                     self.countdownImg.frame = endFrame
                     }, completion: { finishedTwo in
                         
                         if finishedTwo {
                             if times < 2 {
+                                //self.counterPhase = 0
                                 var originalFrame = self.countdownImg.frame
                                 originalFrame.origin.x = -self.countdownImg.frame.size.width
+                                originalFrame.origin.y = screenSize.height/2-140.0/2
                                 self.countdownImg.frame = originalFrame
                                 self.animateCountdown(screenSize, times: times+1)
                             } else {
+                                //self.counterPhase = -1
                                 self.animationGoing = false
                                 self.gameOn = true
                                 self.hintBtn.hidden = false
@@ -482,6 +509,9 @@ class Game : UIViewController, UIGestureRecognizerDelegate {
             hintCircle.removeFromSuperview()
             hintMovingCircle.removeFromSuperview()
             hintTimes = 0
+            
+            timeOver1.removeFromSuperview()
+            timeOver2.removeFromSuperview()
             
             rightCoordinate = rightArray[roundCount].coordinate
             rightPoint = getPixelPoint(rightCoordinate)
