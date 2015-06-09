@@ -107,11 +107,12 @@
 			children = (
 				B0824D7A1AE6DD610035A8EB /* AppDelegate.swift */,
 				B0824D7C1AE6DD610035A8EB /* ThemeSelection.swift */,
+				DECEBC301B1A131400C00C89 /* Store.swift */,
+				85D2B50D1AE9861200F88DC6 /* Classes.swift */,
 				B00C56811B13C53600156453 /* Menu.swift */,
 				B07316221AEEDED60087A615 /* Game.swift */,
 				B0E4F5141B018089007D6424 /* WinLose.swift */,
 				B0E4F5101B011856007D6424 /* locales.plist */,
-				85D2B50D1AE9861200F88DC6 /* Classes.swift */,
 				B0824D7E1AE6DD610035A8EB /* Main.storyboard */,
 				B0708F261B0A92C000FAC25E /* france-specs.png */,
 				B0708F271B0A92C100FAC25E /* uk-specs.png */,
@@ -124,7 +125,6 @@
 				B0824D811AE6DD610035A8EB /* Images.xcassets */,
 				B0824D831AE6DD610035A8EB /* LaunchScreen.xib */,
 				B0824D781AE6DD610035A8EB /* Supporting Files */,
-				DECEBC301B1A131400C00C89 /* Store.swift */,
 			);
 			path = MapIQ;
 			sourceTree = "<group>";

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import StoreKit
 
 class GameEntry : NSObject {
     var distance: Double!
@@ -68,6 +69,8 @@ class Theme: NSObject {
     }
 }
 
+
+
 class Locale : NSObject {
     
     var ID : Int
@@ -104,4 +107,10 @@ class ThemeCell : UITableViewCell {
     @IBOutlet var themeName: UILabel!
     @IBOutlet var themeImage: UIImageView!
     
+}
+
+class StoreCell : UITableViewCell {
+    
+    @IBOutlet var itemImage: UIImageView!
+    @IBOutlet var itemName: UILabel!
 }

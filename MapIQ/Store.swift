@@ -10,60 +10,40 @@ import Foundation
 import UIKit
 import StoreKit
 
-class Store: UIViewController, SKProductsRequestDelegate {
-    
-    var tableView = UITableView()
-    let productIdentifiers = Set(["com.brianjcoleman.testiap1", "com.brianjcoleman.testiap2", "com.brianjcoleman.testiap3", "com.brianjcoleman.testiap4", "com.brianjcoleman.testiap5"])
-    var product: SKProduct?
-    var productsArray = Array<SKProduct>()
-    
-    func requestProductData()
-    {
-        if SKPaymentQueue.canMakePayments() {
-            let request = SKProductsRequest(productIdentifiers:
-                self.productIdentifiers as Set<NSObject>)
-            request.delegate = self
-            request.start()
-        } else {
-            var alert = UIAlertController(title: "In-App Purchases Not Enabled", message: "Please enable In App Purchase in Settings", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default, handler: { alertAction in
-                alert.dismissViewControllerAnimated(true, completion: nil)
-                
-                let url: NSURL? = NSURL(string: UIApplicationOpenSettingsURLString)
-                if url != nil
-                {
-                    UIApplication.sharedApplication().openURL(url!)
-                }
-                
-            }))
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { alertAction in
-                alert.dismissViewControllerAnimated(true, completion: nil)
-            }))
-            self.presentViewController(alert, animated: true, completion: nil)
-        }
+class Store: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    @IBOutlet var userCoins: UILabel!
+    override func viewDidAppear(animated: Bool) {
+        println("viewDidAppear")
+        userCoins.text = String(AppDelegate.userCoins) + " coins"
     }
     
-    func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        println("productsArrayCount: \(AppDelegate.productsArray.count)")
+        return AppDelegate.productsArray.count
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        println("indexPath: \(indexPath.item)")
+        AppDelegate.buyProduct(indexPath)
+        //buyProduct(indexPath)
+        //self.performSegueWithIdentifier("ThemeSelected", sender: tableView.cellForRowAtIndexPath(indexPath))
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("storeCell") as! StoreCell
         
-        var products = response.products
+        var product = AppDelegate.productsArray[indexPath.row]
+        cell.tag = indexPath.row
+        cell.itemName.text = product.localizedTitle
+        //cell.flagImage.image = UIImage(named: "\(theme.mapCode)\(theme.order)")
+        //cell.tag = indexPath.row
+        //cell.themeName.text = theme.name
         
-        if (products.count != 0) {
-            for var i = 0; i < products.count; i++
-            {
-                self.product = products[i] as? SKProduct
-                self.productsArray.append(product!)
-            }
-            self.tableView.reloadData()
-        } else {
-            println("No products found")
-        }
-        
-        products = response.invalidProductIdentifiers
-        
-        for product in products
-        {
-            println("Product not found: \(product)")
-        }
+        return cell
     }
 }
 

@@ -7,17 +7,127 @@
 //
 
 import UIKit
+import StoreKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate {
 
     var window: UIWindow?
+    let productIdentifiers = Set(["com.giovannibf.mapquiz.1000coinspack", "com.giovannibf.mapquiz.10000coinspack", "com.giovannibf.mapquiz.2500coinspack", "com.giovannibf.mapquiz.4000coinspack", "com.giovannibf.mapquiz.ingamehint"])
+    var product: SKProduct?
+    static var productsArray = Array<SKProduct>()
+    static var userCoins = 5
+    func requestProductData(){
+        println("requestProductData")
+        if SKPaymentQueue.canMakePayments() {
+            let request = SKProductsRequest(productIdentifiers:
+                self.productIdentifiers as Set<NSObject>)
+            request.delegate = self
+            request.start()
+        } else {
+            println("cantMakePayments")
+        }
+    }
+    
+    func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
+        println("productsRequest")
+        var products = response.products
+        
+        if (products.count != 0) {
+            for var i = 0; i < products.count; i++
+            {
+                self.product = products[i] as? SKProduct
+                println(product?.price)
+                println(product?.productIdentifier)
+                println(product?.localizedTitle)
+                println(product?.localizedDescription)
+                AppDelegate.productsArray.append(product!)
+                
+            }
+            //self.tableView.reloadData()
+        } else {
+            println("No products found")
+        }
+        
+        products = response.invalidProductIdentifiers
+        
+        for product in products
+        {
+            println("Product not found: \(product)")
+        }
+    }
+    
+    static func buyProduct(sender:NSIndexPath){
+        println("buyProduct")
+        let payment = SKPayment(product: AppDelegate.productsArray[sender.item])
+        SKPaymentQueue.defaultQueue().addPayment(payment)
+        AppDelegate.userCoins += 17
+        println("userCoins: \(userCoins)")
+    }
+    
+    func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
+        println("paymentQueue")
+        for transaction in transactions as! [SKPaymentTransaction] {
+            
+            switch transaction.transactionState {
+                
+            case SKPaymentTransactionState.Purchased:
+                println("Transaction Approved")
+                println("Product Identifier: \(transaction.payment.productIdentifier)")
+                self.deliverProduct(transaction)
+                SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+                
+            case SKPaymentTransactionState.Failed:
+                println("Transaction Failed")
+                SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+            default:
+                break
+            }
+        }
+    }
+    
+    func deliverProduct(transaction:SKPaymentTransaction) {
+        println("productIdentifiersCount: \(productIdentifiers.count)")
+        for productIdentifier in productIdentifiers{
+            if(transaction.payment.productIdentifier == productIdentifier){
+                println("product: \(transaction.payment.productIdentifier)")
+            }
+        }
+        
+        /*
+        if transaction.payment.productIdentifier == "com.brianjcoleman.testiap1"
+        {
+        println("Consumable Product Purchased")
+        // Unlock Feature
+        }
+        else if transaction.payment.productIdentifier == "com.brianjcoleman.testiap2"
+        {
+        println("Non-Consumable Product Purchased")
+        // Unlock Feature
+        }
+        else if transaction.payment.productIdentifier == "com.brianjcoleman.testiap3"
+        {
+        println("Auto-Renewable Subscription Product Purchased")
+        // Unlock Feature
+        }
+        else if transaction.payment.productIdentifier == "com.brianjcoleman.testiap4"
+        {
+        println("Free Subscription Product Purchased")
+        // Unlock Feature
+        }
+        else if transaction.payment.productIdentifier == "com.brianjcoleman.testiap5"
+        {
+        println("Non-Renewing Subscription Product Purchased")
+        // Unlock Feature
+        }*/
+    }
     
     //let googleMapsApiKey = "AIzaSyAVZd6AZ6DR_Jv4nc8wANr5FvPFyez2-z0"
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         //GMSServices.provideAPIKey(googleMapsApiKey)
+        requestProductData()
         return true
     }
 

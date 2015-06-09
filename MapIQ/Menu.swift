@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import StoreKit
 class Menu : UIViewController {
     
     let underImage = UIImageView(image: UIImage(named: "underTitleMap"))
@@ -39,6 +40,7 @@ class Menu : UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        let productIdentifiers = Set(["com.giovannibf.mapquiz.1000coinspack", "com.giovannibf.mapquiz.10000coinspack", "com.giovannibf.mapquiz.2500coinspack", "com.giovannibf.mapquiz.4000coinspack", "com.giovannibf.mapquiz.ingamehint"])
         underImage.frame = titleImage.frame
         underImage2.frame = CGRect(x: titleImage.frame.origin.x+titleImage.frame.size.width, y: titleImage.frame.origin.y, width: titleImage.frame.size.width, height: titleImage.frame.size.height)
         
