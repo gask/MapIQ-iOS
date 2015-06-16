@@ -27,6 +27,7 @@
 		B0E4F5111B011856007D6424 /* locales.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0E4F5101B011856007D6424 /* locales.plist */; };
 		B0E4F5151B018089007D6424 /* WinLose.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E4F5141B018089007D6424 /* WinLose.swift */; };
 		DECEBC311B1A131400C00C89 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEBC301B1A131400C00C89 /* Store.swift */; };
+		DEFF22D71B2E25AA00084A97 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEFF22D61B2E25AA00084A97 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		B0E4F5101B011856007D6424 /* locales.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = locales.plist; sourceTree = "<group>"; };
 		B0E4F5141B018089007D6424 /* WinLose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinLose.swift; sourceTree = "<group>"; };
 		DECEBC301B1A131400C00C89 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		DEFF22D61B2E25AA00084A97 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		DEFF22D81B2E25E200084A97 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEFF22D71B2E25AA00084A97 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +109,7 @@
 		B0824D771AE6DD610035A8EB /* MapIQ */ = {
 			isa = PBXGroup;
 			children = (
+				DEFF22D61B2E25AA00084A97 /* FacebookSDK.framework */,
 				B0824D7A1AE6DD610035A8EB /* AppDelegate.swift */,
 				B0824D7C1AE6DD610035A8EB /* ThemeSelection.swift */,
 				DECEBC301B1A131400C00C89 /* Store.swift */,
@@ -112,6 +117,7 @@
 				B00C56811B13C53600156453 /* Menu.swift */,
 				B07316221AEEDED60087A615 /* Game.swift */,
 				B0E4F5141B018089007D6424 /* WinLose.swift */,
+				DEFF22D81B2E25E200084A97 /* Bridging-Header.h */,
 				B0E4F5101B011856007D6424 /* locales.plist */,
 				B0824D7E1AE6DD610035A8EB /* Main.storyboard */,
 				B0708F261B0A92C000FAC25E /* france-specs.png */,
@@ -397,12 +403,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/MapIQ";
 				INFOPLIST_FILE = MapIQ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MapIQ/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -413,12 +419,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/MapIQ";
 				INFOPLIST_FILE = MapIQ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MapIQ/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

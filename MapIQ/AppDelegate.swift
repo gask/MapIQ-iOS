@@ -10,8 +10,8 @@ import UIKit
 import StoreKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate{
+    
     var window: UIWindow?
     let productIdentifiers = Set(["com.giovannibf.mapquiz.1000coinspack", "com.giovannibf.mapquiz.10000coinspack", "com.giovannibf.mapquiz.2500coinspack", "com.giovannibf.mapquiz.4000coinspack", "com.giovannibf.mapquiz.ingamehint"])
     var product: SKProduct?
@@ -62,7 +62,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         let payment = SKPayment(product: AppDelegate.productsArray[sender.item])
         SKPaymentQueue.defaultQueue().addPayment(payment)
         AppDelegate.userCoins += 17
-        println("userCoins: \(userCoins)")
+        println("userCoins: \(AppDelegate.userCoins)")
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //NSNotificationCenter.defaultCenter().addObserver(appDelegate, selector: "updateNotificationSentLabel", name: "boughtCoins", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("boughtCoins", object: nil)
+        
+    }
+    
+    func updateNotificationSentLabel(){
+        println("updateNotificationSentLabel")
     }
     
     func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
@@ -128,6 +136,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         // Override point for customization after application launch.
         //GMSServices.provideAPIKey(googleMapsApiKey)
         requestProductData()
+        FBLoginView.self
+        FBProfilePictureView.self
         return true
     }
 
@@ -153,6 +163,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    
 }
 

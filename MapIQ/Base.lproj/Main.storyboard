@@ -801,7 +801,7 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="userCoins" destination="6Jd-ZH-1Ak" id="g9L-l5-2mh"/>
+                        <outlet property="userCoinsLabel" destination="6Jd-ZH-1Ak" id="7ZQ-iJ-bO9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cod-yD-0KQ" sceneMemberID="firstResponder"/>

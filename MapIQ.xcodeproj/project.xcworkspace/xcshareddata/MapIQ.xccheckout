@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>96135D6F-AA44-4946-809A-FF8D6A532246</string>
 	<key>IDESourceControlProjectName</key>
-	<string>MapIQ</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>DA05522A89AD1EF3B15F93E0FF8A7DA2EC796C8B</key>
 		<string>https://github.com/gask/MapIQ-iOS</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>MapIQ.xcodeproj</string>
+	<string>MapIQ.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>DA05522A89AD1EF3B15F93E0FF8A7DA2EC796C8B</key>
