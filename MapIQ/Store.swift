@@ -11,55 +11,63 @@ import UIKit
 import StoreKit
 import Social
 
-class Store: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class Store: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var userCoinsLabel: UILabel!
     
-    override func viewDidAppear(animated: Bool) {
-        println("viewDidAppear")
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
         userCoinsLabel.text = String(AppDelegate.userCoins) + " coins"
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "productWasBought", name: "boughtCoins", object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.productWasBought), name: NSNotification.Name("boughtCoins"), object: nil)
     }
     
-    func productWasBought(){
-        println("productWasBought")
+    @objc func productWasBought(){
+        print("productWasBought")
         userCoinsLabel.text = String(AppDelegate.userCoins) + " coins"
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println("productsArrayCount: \(AppDelegate.productsArray.count)")
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("productsArrayCount: \(AppDelegate.productsArray.count)")
         return AppDelegate.productsArray.count + 1
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("indexPath: \(indexPath.row)")
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("indexPath: \(indexPath.row)")
         if(indexPath.row<5){
-            AppDelegate.buyProduct(indexPath)
-        }else{
-            println("OpenFacebbok")
-            var urlPage = NSURL(string: "https://www.facebook.com/pages/Map-IQ-Free-Quiz-Trivia-Community/548654631858059")
-            UIApplication.sharedApplication().openURL(urlPage!)
+            AppDelegate.buyProduct(sender: indexPath)
+            return
+        }
+        
+        print("OpenFacebbok")
+        if let urlPage = URL(string: "https://www.facebook.com/pages/Map-IQ-Free-Quiz-Trivia-Community/548654631858059") {
+            UIApplication.shared.open(urlPage)
         }
         
         //buyProduct(indexPath)
         //self.performSegueWithIdentifier("ThemeSelected", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
     
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("index: \(indexPath.row)")
-        var cell = tableView.dequeueReusableCellWithIdentifier("storeCell") as! StoreCell
-        if(indexPath.row<5){
-            var product = AppDelegate.productsArray[indexPath.row]
-            cell.itemName.text = product.localizedTitle
-        }else{
-            cell.itemName.text = "Like Us On Facebook"
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("index: \(indexPath.row)")
+        
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath)
+        
+        if let c = cell as? StoreCell {
+            c.tag = indexPath.row
+            
+            if indexPath.row < 5 {
+                let product = AppDelegate.productsArray[indexPath.row]
+                c.itemName.text = product.localizedTitle
+            } else {
+                c.itemName.text = "Like Us On Facebook"
+            }
         }
-        cell.tag = indexPath.row
+        
+        
         
         //cell.flagImage.image = UIImage(named: "\(theme.mapCode)\(theme.order)")
         //cell.tag = indexPath.row

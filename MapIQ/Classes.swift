@@ -27,9 +27,9 @@ class GameEntry : NSObject {
     
     override var description : String {
         var desc = "GameEntry: {\r"
-        desc += "distance: \(distance)\r"
+        desc += "distance: \(distance as Any)\r"
         desc += "coordinate: (\(coordinate.y),\(coordinate.x))\r"
-        desc += "score: \(score)\r"
+        desc += "score: \(score as Any)\r"
         desc += "time: \(time)\r"
         desc += "}"
         

@@ -16,30 +16,29 @@ class Menu : UIViewController {
     
     @IBOutlet var titleImage: UIImageView!
     
-    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         underImage.frame = CGRectZero
         underImage2.frame = CGRectZero
     }
     
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         underImage.layer.removeAllAnimations()
         underImage2.layer.removeAllAnimations()
         
         underImage.frame = titleImage.frame
         underImage2.frame = CGRect(x: titleImage.frame.origin.x+titleImage.frame.size.width, y: titleImage.frame.origin.y, width: titleImage.frame.size.width, height: titleImage.frame.size.height)
         
-        UIView.animateWithDuration(15.0, delay: 0.0, options: .Repeat, animations: { () -> Void in
+        UIView.animate(withDuration: 15.0, delay: 0.0, options: .repeat) {
             var newFrame = self.titleImage.frame
             newFrame.origin.x = self.titleImage.frame.origin.x-self.titleImage.frame.size.width
             self.underImage.frame = newFrame
             
-            var newFrame2 = self.titleImage.frame
+            let newFrame2 = self.titleImage.frame
             self.underImage2.frame = newFrame2
-            
-        }, completion: nil)
+        }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         let productIdentifiers = Set(["com.giovannibf.mapquiz.1000coinspack", "com.giovannibf.mapquiz.10000coinspack", "com.giovannibf.mapquiz.2500coinspack", "com.giovannibf.mapquiz.4000coinspack", "com.giovannibf.mapquiz.ingamehint"])
         underImage.frame = titleImage.frame
         underImage2.frame = CGRect(x: titleImage.frame.origin.x+titleImage.frame.size.width, y: titleImage.frame.origin.y, width: titleImage.frame.size.width, height: titleImage.frame.size.height)
@@ -47,14 +46,13 @@ class Menu : UIViewController {
         self.view.insertSubview(underImage, belowSubview: titleImage)
         self.view.insertSubview(underImage2, belowSubview: titleImage)
         
-        UIView.animateWithDuration(15.0, delay: 0.0, options: .Repeat, animations: { () -> Void in
+        UIView.animate(withDuration: 15.0, delay: 0.0, options: .repeat) {
             var newFrame = self.titleImage.frame
             newFrame.origin.x = self.titleImage.frame.origin.x-self.titleImage.frame.size.width
             self.underImage.frame = newFrame
             
-            var newFrame2 = self.titleImage.frame
+            let newFrame2 = self.titleImage.frame
             self.underImage2.frame = newFrame2
-            
-        }, completion: nil)
+        }
     }
 }
